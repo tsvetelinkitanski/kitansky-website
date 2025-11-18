@@ -262,6 +262,118 @@ const KitanSkyWebsite = () => {
 
   const t = translations[language];
 
+  // Set page title and meta tags for SEO
+  useEffect(() => {
+    const metaTags =
+      language === "bg"
+        ? {
+            title:
+              "KitanSky - Project Management София | Строителство & Ремонт",
+            description:
+              "Професионално управление на строителни проекти в София. Жилищно строителство, ремонтни дейности, обзавеждане, технически надзор. 8+ години опит. ☎ +359 878 34 94 53",
+            keywords:
+              "project management софия, строителство софия, ремонтни дейности, жилищно строителство, обзавеждане, фирма за ремонт, технически надзор, консултации строителство, project manager българия, ремонт на ново строителство",
+          }
+        : {
+            title:
+              "KitanSky - Project Management Sofia | Construction & Renovation",
+            description:
+              "Professional construction project management in Sofia. Residential construction, renovation, interior design, technical supervision. 8+ years of experience. ☎ +359 878 34 94 53",
+            keywords:
+              "project management sofia, construction sofia, renovation services, residential construction, interior design, construction consulting, technical supervision, project manager bulgaria",
+          };
+
+    // Set title
+    document.title = metaTags.title;
+
+    // Set or update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement("meta");
+      metaDescription.name = "description";
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.content = metaTags.description;
+
+    // Set or update meta keywords
+    let metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (!metaKeywords) {
+      metaKeywords = document.createElement("meta");
+      metaKeywords.name = "keywords";
+      document.head.appendChild(metaKeywords);
+    }
+    metaKeywords.content = metaTags.keywords;
+
+    // Open Graph tags
+    const ogTags = [
+      { property: "og:title", content: metaTags.title },
+      { property: "og:description", content: metaTags.description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://kitansky.com" },
+      { property: "og:image", content: "https://kitansky.com/og-image.jpg" },
+      { property: "og:locale", content: language === "bg" ? "bg_BG" : "en_US" },
+    ];
+
+    ogTags.forEach((tag) => {
+      let metaTag = document.querySelector(`meta[property="${tag.property}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement("meta");
+        metaTag.setAttribute("property", tag.property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.content = tag.content;
+    });
+
+    // Structured Data (JSON-LD) for Local Business
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "KitanSky Project Management",
+      description: metaTags.description,
+      url: "https://kitansky.com",
+      telephone: "+359878349453",
+      email: "kitanskitsvetelin@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Sofia",
+        addressCountry: "BG",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "42.6977",
+        longitude: "23.3219",
+      },
+      priceRange: "$$",
+      areaServed: {
+        "@type": "City",
+        name: "Sofia",
+      },
+      serviceType: [
+        "Project Management",
+        "Construction Management",
+        "Residential Construction",
+        "Renovation Services",
+        "Technical Supervision",
+        "Construction Consulting",
+      ],
+      founder: {
+        "@type": "Person",
+        name: "Tsvetelin Kitanski",
+        jobTitle: "Project Manager",
+      },
+    };
+
+    let scriptTag = document.querySelector(
+      'script[type="application/ld+json"]'
+    );
+    if (!scriptTag) {
+      scriptTag = document.createElement("script");
+      scriptTag.type = "application/ld+json";
+      document.head.appendChild(scriptTag);
+    }
+    scriptTag.textContent = JSON.stringify(structuredData);
+  }, [language]);
+
   // Scroll animations
   useEffect(() => {
     const observer = new IntersectionObserver(
