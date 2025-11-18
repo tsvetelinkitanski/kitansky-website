@@ -13,12 +13,14 @@ import {
   ChevronLeft,
   ChevronRight,
   Play,
+  Globe,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const KitanSkyWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [language, setLanguage] = useState("bg"); // BG by default
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +31,236 @@ const KitanSkyWebsite = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+
+  // Translations
+  const translations = {
+    bg: {
+      nav: {
+        home: "Начало",
+        about: "За мен",
+        projects: "Проекти",
+        services: "Услуги",
+        contact: "Контакти",
+      },
+      hero: {
+        title: "KitanSky",
+        subtitle: "Project & Property Management",
+        experience: "8+ години опит",
+        projects: "15+ проекта",
+        quality: "100% качество",
+        description:
+          "Професионално управление на строителни проекти с фокус върху качество, срокове и иновации",
+        viewProjects: "Разгледай проекти",
+        contactMe: "Свържи се с мен",
+      },
+      about: {
+        title: "За мен",
+        name: "Цветелин Китански",
+        intro: "Project Manager със солиден опит в строителната индустрия.",
+        career:
+          "Започнах кариерата си като работник на обект, преминах през позицията на технически ръководител и днес управлявам цялостни строителни проекти от началото до края.",
+        vision:
+          "Моята визия е да създавам качествени проекти, които съчетават функционалност, естетика и устойчивост, като винаги спазвам срокове и бюджет.",
+        experienceTitle: "Опит",
+        experienceText: "8+ години в строителството",
+        specializationTitle: "Специализация",
+        specializationText: "Project Management & Технически надзор",
+        completedTitle: "Завършени проекти",
+        completedText: "15+ успешно реализирани обекта",
+      },
+      services: {
+        title: "Услуги",
+        pm: {
+          title: "Project Management",
+          description:
+            "Пълно управление на строителни проекти от концепция до завършване",
+        },
+        supervision: {
+          title: "Технически надзор",
+          description:
+            "Професионален технически контрол и координация на строителния процес",
+        },
+        consulting: {
+          title: "Консултации",
+          description:
+            "Експертни консултации за оптимизация на строителни процеси",
+        },
+      },
+      projectsSection: {
+        title: "Проекти",
+        viewGallery: "Виж галерия",
+        media: "медия",
+        realPhotos: "Реални снимки и видеа от моите проекти",
+      },
+      contact: {
+        title: "Контакти",
+        connectTitle: "Свържете се с мен",
+        followMe: "Последвай ме:",
+        sendTitle: "Изпрати запитване",
+        name: "Име",
+        email: "Имейл",
+        phone: "Телефон",
+        message: "Съобщение",
+        sendButton: "Изпрати запитване",
+        sending: "Изпраща се...",
+        successMessage:
+          "Съобщението е изпратено успешно! Ще се свържа с вас скоро.",
+        errorMessage:
+          "Грешка при изпращане. Моля, опитайте отново или ми пишете директно на имейл.",
+        namePlaceholder: "Вашето име",
+        emailPlaceholder: "your.email@example.com",
+        phonePlaceholder: "+359 XXX XXX XXX",
+        messagePlaceholder: "Разкажете ми за вашия проект...",
+      },
+      footer: {
+        rights: "© 2024 KitanSky Project Management. Всички права запазени.",
+        tagline: "Разработено за строителната индустрия",
+      },
+      projects: {
+        doml2: {
+          title: "ДОМЛ2 - Жилищен комплекс",
+          company: "Домекс",
+          location: "София, кв. Люлин",
+          description:
+            "10,000 м² РЗП жилищен комплекс със 144 апартамента, EPS топлоизолация и специфична архитектура. Пълно управление от изкоп и укрепване до Акт 16 и довършителни работи.",
+          role: "Project Manager",
+          category: "Жилищно строителство",
+        },
+        corner: {
+          title: "The Corner",
+          company: "Инфинити",
+          location: "София, ул. Черковна 20",
+          description:
+            "Участие в целия строителен процес от изкоп до довършителни работи като технически ръководител на проекта.",
+          role: "Технически ръководител",
+          category: "Довършителни работи",
+        },
+        fountains: {
+          title: "Фонтани - Green District",
+          company: "Домекс",
+          location: "София, Драгалевци",
+          description:
+            "Луксозен жилищен комплекс с модерна архитектура и зелени площи. Управление на строителния процес от основи до завършване.",
+          role: "Project Manager",
+          category: "Жилищно строителство",
+        },
+      },
+    },
+    en: {
+      nav: {
+        home: "Home",
+        about: "About",
+        projects: "Projects",
+        services: "Services",
+        contact: "Contact",
+      },
+      hero: {
+        title: "KitanSky",
+        subtitle: "Project & Property Management",
+        experience: "8+ years experience",
+        projects: "15+ projects",
+        quality: "100% quality",
+        description:
+          "Professional construction project management with focus on quality, deadlines and innovation",
+        viewProjects: "View Projects",
+        contactMe: "Contact Me",
+      },
+      about: {
+        title: "About Me",
+        name: "Tsvetelin Kitanski",
+        intro:
+          "Project Manager with solid experience in the construction industry.",
+        career:
+          "I started my career as a construction worker, progressed through the position of technical manager, and today I manage complete construction projects from start to finish.",
+        vision:
+          "My vision is to create quality projects that combine functionality, aesthetics and sustainability, while always meeting deadlines and budgets.",
+        experienceTitle: "Experience",
+        experienceText: "8+ years in construction",
+        specializationTitle: "Specialization",
+        specializationText: "Project Management & Technical Supervision",
+        completedTitle: "Completed Projects",
+        completedText: "15+ successfully realized projects",
+      },
+      services: {
+        title: "Services",
+        pm: {
+          title: "Project Management",
+          description:
+            "Complete management of construction projects from concept to completion",
+        },
+        supervision: {
+          title: "Technical Supervision",
+          description:
+            "Professional technical control and coordination of the construction process",
+        },
+        consulting: {
+          title: "Consulting",
+          description:
+            "Expert consulting for optimization of construction processes",
+        },
+      },
+      projectsSection: {
+        title: "Projects",
+        viewGallery: "View Gallery",
+        media: "media",
+        realPhotos: "Real photos and videos from my projects",
+      },
+      contact: {
+        title: "Contact",
+        connectTitle: "Get in Touch",
+        followMe: "Follow me:",
+        sendTitle: "Send Inquiry",
+        name: "Name",
+        email: "Email",
+        phone: "Phone",
+        message: "Message",
+        sendButton: "Send Inquiry",
+        sending: "Sending...",
+        successMessage: "Message sent successfully! I will contact you soon.",
+        errorMessage:
+          "Error sending message. Please try again or email me directly.",
+        namePlaceholder: "Your name",
+        emailPlaceholder: "your.email@example.com",
+        phonePlaceholder: "+359 XXX XXX XXX",
+        messagePlaceholder: "Tell me about your project...",
+      },
+      footer: {
+        rights: "© 2024 KitanSky Project Management. All rights reserved.",
+        tagline: "Developed with ❤️ for the construction industry",
+      },
+      projects: {
+        doml2: {
+          title: "DOML2 - Residential Complex",
+          company: "Domex",
+          location: "Sofia, Lyulin District",
+          description:
+            "10,000 m² GFA residential complex with 144 apartments, EPS insulation and specific architecture. Complete management from excavation and reinforcement to Act 16 and finishing works.",
+          role: "Project Manager",
+          category: "Residential Construction",
+        },
+        corner: {
+          title: "The Corner",
+          company: "Infinity",
+          location: "Sofia, 20 Cherkov St.",
+          description:
+            "Participation in the entire construction process from excavation to finishing works as technical manager of the project.",
+          role: "Technical Manager",
+          category: "Finishing Works",
+        },
+        fountains: {
+          title: "Fountains - Green District",
+          company: "Domex",
+          location: "Sofia, Dragalevtsi",
+          description:
+            "Luxury residential complex with modern architecture and green spaces. Management of the construction process from foundations to completion.",
+          role: "Project Manager",
+          category: "Residential Construction",
+        },
+      },
+    },
+  };
+
+  const t = translations[language];
 
   // Scroll animations
   useEffect(() => {
@@ -55,25 +287,28 @@ const KitanSkyWebsite = () => {
     setIsMenuOpen(false);
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === "bg" ? "en" : "bg");
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormStatus("sending");
 
     try {
-      // EmailJS Integration
       const templateParams = {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone || "Не е посочен",
+        phone: formData.phone || "Not specified",
         message: formData.message,
         reply_to: formData.email,
       };
 
       await emailjs.send(
-        "service_94n1zrf", // Service ID
-        "template_aw7ixk3", // Template ID
+        "service_94n1zrf",
+        "template_aw7ixk3",
         templateParams,
-        "fEgB1v3-6_xRrvVHg" // Public Key
+        "fEgB1v3-6_xRrvVHg"
       );
 
       setFormStatus("success");
@@ -120,7 +355,6 @@ const KitanSkyWebsite = () => {
     }
   };
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
       if (!galleryOpen) return;
@@ -137,105 +371,129 @@ const KitanSkyWebsite = () => {
   const projects = [
     {
       id: 1,
-      title: "ДОМЛ2 - Жилищен комплекс",
-      company: "Домекс",
-      location: "София, кв. Люлин",
-      description:
-        "10,000 м² РЗП жилищен комплекс със 144 апартамента, EPS топлоизолация и специфична архитектура. Пълно управление от изкоп и укрепване до Акт 16 и довършителни работи.",
-      role: "Project Manager",
+      title: t.projects.doml2.title,
+      company: t.projects.doml2.company,
+      location: t.projects.doml2.location,
+      description: t.projects.doml2.description,
+      role: t.projects.doml2.role,
       image: "/projects/doml2_3d.jpg",
-      category: "Жилищно строителство",
+      category: t.projects.doml2.category,
       media: [
         {
           type: "image",
           src: "/projects/doml2_3d.jpg",
-          caption: "3D визуализация",
+          caption: language === "bg" ? "3D визуализация" : "3D Visualization",
         },
-
         {
           type: "image",
           src: "/projects/DJI_0363.jpg",
-          caption: "Aerial view - строителство",
+          caption:
+            language === "bg"
+              ? "Aerial view - строителство"
+              : "Aerial view - construction",
         },
         {
           type: "image",
           src: "/projects/doml2_drone2.jpg",
-          caption: "Drone снимка - общ изглед",
+          caption:
+            language === "bg"
+              ? "Drone снимка - общ изглед"
+              : "Drone photo - overview",
         },
       ],
     },
     {
       id: 2,
-      title: "The Corner",
-      company: "Инфинити",
-      location: "София, ул. Черковна 20",
-      description:
-        "Участие в целия строителен процес от изкоп до довършителни работи като технически ръководител на проекта.",
-      role: "Технически ръководител",
+      title: t.projects.corner.title,
+      company: t.projects.corner.company,
+      location: t.projects.corner.location,
+      description: t.projects.corner.description,
+      role: t.projects.corner.role,
       image: "/projects/IMG_0146.jpg",
-      category: "Довършителни работи",
+      category: t.projects.corner.category,
       media: [
         {
           type: "image",
           src: "/projects/IMG_0146.jpg",
-          caption: "Довършителни работи",
+          caption:
+            language === "bg" ? "Довършителни работи" : "Finishing works",
         },
-        { type: "image", src: "/projects/IMG_0147.jpg", caption: "Интериор" },
-        { type: "image", src: "/projects/IMG_0148.jpg", caption: "Детайли" },
-        { type: "image", src: "/projects/IMG_0526.jpg", caption: "Фасада" },
+        {
+          type: "image",
+          src: "/projects/IMG_0147.jpg",
+          caption: language === "bg" ? "Интериор" : "Interior",
+        },
+        {
+          type: "image",
+          src: "/projects/IMG_0148.jpg",
+          caption: language === "bg" ? "Детайли" : "Details",
+        },
+        {
+          type: "image",
+          src: "/projects/IMG_0526.jpg",
+          caption: language === "bg" ? "Фасада" : "Facade",
+        },
         {
           type: "image",
           src: "/projects/IMG_0529.jpg",
-          caption: "Завършен изглед",
+          caption: language === "bg" ? "Завършен изглед" : "Finished view",
         },
       ],
     },
     {
       id: 3,
-      title: "Фонтани - Green District",
-      company: "Домекс",
-      location: "София, Драгалевци",
-      description:
-        "Луксозен жилищен комплекс с модерна архитектура и зелени площи. Управление на строителния процес от основи до завършване.",
-      role: "Project Manager",
+      title: t.projects.fountains.title,
+      company: t.projects.fountains.company,
+      location: t.projects.fountains.location,
+      description: t.projects.fountains.description,
+      role: t.projects.fountains.role,
       image: "/projects/fountains_3d_sunset.jpg",
-      category: "Жилищно строителство",
+      category: t.projects.fountains.category,
       media: [
         {
           type: "image",
           src: "/projects/fountains_3d_sunset.jpg",
-          caption: "3D визуализация - залез",
+          caption:
+            language === "bg"
+              ? "3D визуализация - залез"
+              : "3D visualization - sunset",
         },
         {
           type: "image",
           src: "/projects/fountains_3d_day.jpg",
-          caption: "3D визуализация - ден",
+          caption:
+            language === "bg"
+              ? "3D визуализация - ден"
+              : "3D visualization - day",
         },
-
         {
           type: "image",
           src: "/projects/fountains_construction1.jpg",
-          caption: "Строителен процес",
+          caption:
+            language === "bg" ? "Строителен процес" : "Construction process",
         },
         {
           type: "image",
           src: "/projects/fountains_construction2.jpg",
-          caption: "Конструкция",
+          caption: language === "bg" ? "Конструкция" : "Structure",
         },
         {
           type: "image",
           src: "/projects/fountains_construction3.jpg",
-          caption: "Груб строеж",
+          caption: language === "bg" ? "Груб строеж" : "Rough construction",
         },
         {
           type: "image",
           src: "/projects/fountains_construction4.jpg",
-          caption: "Детайли на конструкцията",
+          caption:
+            language === "bg"
+              ? "Детайли на конструкцията"
+              : "Structure details",
         },
         {
           type: "image",
           src: "/projects/fountains_construction5.jpg",
-          caption: "Общ изглед на обекта",
+          caption: language === "bg" ? "Общ изглед на обекта" : "Site overview",
         },
       ],
     },
@@ -244,20 +502,18 @@ const KitanSkyWebsite = () => {
   const services = [
     {
       icon: <Briefcase className="w-8 h-8" />,
-      title: "Project Management",
-      description:
-        "Пълно управление на строителни проекти от концепция до завършване",
+      title: t.services.pm.title,
+      description: t.services.pm.description,
     },
     {
       icon: <Award className="w-8 h-8" />,
-      title: "Технически надзор",
-      description:
-        "Професионален технически контрол и координация на строителния процес",
+      title: t.services.supervision.title,
+      description: t.services.supervision.description,
     },
     {
       icon: <CheckCircle className="w-8 h-8" />,
-      title: "Консултации",
-      description: "Експертни консултации за оптимизация на строителни процеси",
+      title: t.services.consulting.title,
+      description: t.services.consulting.description,
     },
   ];
 
@@ -277,28 +533,42 @@ const KitanSkyWebsite = () => {
               </h1>
             </div>
 
-            <div className="hidden md:flex space-x-8">
-              {["Начало", "За мен", "Проекти", "Услуги", "Контакти"].map(
-                (item, index) => (
-                  <button
-                    key={item}
-                    onClick={() =>
-                      scrollToSection(
-                        ["home", "about", "projects", "services", "contact"][
-                          index
-                        ]
-                      )
-                    }
-                    className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
-                  >
-                    {item}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
-                  </button>
-                )
-              )}
+            <div className="hidden md:flex items-center space-x-8">
+              {Object.values(t.nav).map((item, index) => (
+                <button
+                  key={item}
+                  onClick={() =>
+                    scrollToSection(
+                      ["home", "about", "projects", "services", "contact"][
+                        index
+                      ]
+                    )
+                  }
+                  className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
+                >
+                  {item}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
+                </button>
+              ))}
+
+              {/* Language Toggle */}
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-stone-600 to-neutral-700 text-white rounded-full hover:from-stone-700 hover:to-neutral-800 transition-all duration-300 font-bold shadow-lg"
+              >
+                <Globe size={18} />
+                <span>{language === "bg" ? "EN" : "BG"}</span>
+              </button>
             </div>
 
-            <div className="md:hidden">
+            <div className="md:hidden flex items-center gap-3">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 px-3 py-2 bg-gradient-to-r from-stone-600 to-neutral-700 text-white rounded-full text-sm font-bold"
+              >
+                <Globe size={16} />
+                {language === "bg" ? "EN" : "BG"}
+              </button>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-slate-700 hover:text-stone-700"
@@ -312,23 +582,21 @@ const KitanSkyWebsite = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-stone-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {["Начало", "За мен", "Проекти", "Услуги", "Контакти"].map(
-                (item, index) => (
-                  <button
-                    key={item}
-                    onClick={() =>
-                      scrollToSection(
-                        ["home", "about", "projects", "services", "contact"][
-                          index
-                        ]
-                      )
-                    }
-                    className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
-                  >
-                    {item}
-                  </button>
-                )
-              )}
+              {Object.values(t.nav).map((item, index) => (
+                <button
+                  key={item}
+                  onClick={() =>
+                    scrollToSection(
+                      ["home", "about", "projects", "services", "contact"][
+                        index
+                      ]
+                    )
+                  }
+                  className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
+                >
+                  {item}
+                </button>
+              ))}
             </div>
           </div>
         )}
@@ -338,7 +606,6 @@ const KitanSkyWebsite = () => {
         id="home"
         className="min-h-screen flex items-center justify-center pt-20 px-4 relative overflow-hidden"
       >
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=90"
@@ -353,29 +620,28 @@ const KitanSkyWebsite = () => {
           <div className="space-y-8">
             <div className="overflow-hidden">
               <h2 className="text-7xl md:text-9xl font-black mb-6 bg-gradient-to-r from-stone-200 via-white to-neutral-200 bg-clip-text text-transparent animate-fade-in-up inline-block drop-shadow-2xl">
-                KitanSky
+                {t.hero.title}
               </h2>
             </div>
 
             <h3 className="text-2xl md:text-5xl font-bold text-white mb-6 animate-fade-in-up animation-delay-200 drop-shadow-lg">
-              Project & Property Management
+              {t.hero.subtitle}
             </h3>
 
             <div className="flex flex-wrap gap-3 justify-center mb-8 animate-fade-in-up animation-delay-400">
               <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
-                ✓ 8+ години опит
+                ✓ {t.hero.experience}
               </span>
               <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
-                ✓ 15+ проекта
+                ✓ {t.hero.projects}
               </span>
               <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
-                ✓ 100% качество
+                ✓ {t.hero.quality}
               </span>
             </div>
 
             <p className="text-xl md:text-2xl text-stone-100 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-600 drop-shadow-lg font-medium">
-              Професионално управление на строителни проекти с фокус върху
-              качество, срокове и иновации
+              {t.hero.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-800">
@@ -383,13 +649,13 @@ const KitanSkyWebsite = () => {
                 onClick={() => scrollToSection("projects")}
                 className="px-10 py-5 bg-white hover:bg-stone-50 text-slate-900 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl"
               >
-                Разгледай проекти →
+                {t.hero.viewProjects} →
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="px-10 py-5 bg-gradient-to-r from-stone-700 to-neutral-700 hover:from-stone-800 hover:to-neutral-800 text-white rounded-2xl font-bold transition-all duration-300 border-2 border-white/30 transform hover:scale-105 shadow-2xl"
               >
-                Свържи се с мен
+                {t.hero.contactMe}
               </button>
             </div>
           </div>
@@ -412,27 +678,23 @@ const KitanSkyWebsite = () => {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
-            За мен
+            {t.about.title}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="bg-gradient-to-br from-white to-stone-50/50 p-10 rounded-3xl border border-stone-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                 <h3 className="text-4xl font-black text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text mb-6">
-                  Цветелин Китански
+                  {t.about.name}
                 </h3>
                 <p className="text-lg text-slate-700 leading-relaxed mb-4">
-                  Project Manager със солиден опит в строителната индустрия.
+                  {t.about.intro}
                 </p>
                 <p className="text-slate-600 leading-relaxed mb-4">
-                  Започнах кариерата си като работник на обект, преминах през
-                  позицията на технически ръководител и днес управлявам цялостни
-                  строителни проекти от началото до края.
+                  {t.about.career}
                 </p>
                 <p className="text-slate-600 leading-relaxed">
-                  Моята визия е да създавам качествени проекти, които съчетават
-                  функционалност, естетика и устойчивост, като винаги спазвам
-                  срокове и бюджет.
+                  {t.about.vision}
                 </p>
               </div>
             </div>
@@ -446,10 +708,12 @@ const KitanSkyWebsite = () => {
                   <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
                     <Briefcase className="text-white" size={28} />
                   </div>
-                  <h4 className="text-2xl font-bold">Опит</h4>
+                  <h4 className="text-2xl font-bold">
+                    {t.about.experienceTitle}
+                  </h4>
                 </div>
                 <p className="text-stone-50 text-lg">
-                  8+ години в строителството
+                  {t.about.experienceText}
                 </p>
               </div>
 
@@ -461,10 +725,12 @@ const KitanSkyWebsite = () => {
                   <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
                     <Award className="text-white" size={28} />
                   </div>
-                  <h4 className="text-2xl font-bold">Специализация</h4>
+                  <h4 className="text-2xl font-bold">
+                    {t.about.specializationTitle}
+                  </h4>
                 </div>
                 <p className="text-neutral-50 text-lg">
-                  Project Management & Технически надзор
+                  {t.about.specializationText}
                 </p>
               </div>
 
@@ -476,11 +742,11 @@ const KitanSkyWebsite = () => {
                   <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
                     <CheckCircle className="text-white" size={28} />
                   </div>
-                  <h4 className="text-2xl font-bold">Завършени проекти</h4>
+                  <h4 className="text-2xl font-bold">
+                    {t.about.completedTitle}
+                  </h4>
                 </div>
-                <p className="text-stone-50 text-lg">
-                  15+ успешно реализирани обекта
-                </p>
+                <p className="text-stone-50 text-lg">{t.about.completedText}</p>
               </div>
             </div>
           </div>
@@ -493,7 +759,7 @@ const KitanSkyWebsite = () => {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
-            Услуги
+            {t.services.title}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -525,7 +791,7 @@ const KitanSkyWebsite = () => {
       <section id="projects" className="py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
-            Проекти
+            {t.projectsSection.title}
           </h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -548,19 +814,12 @@ const KitanSkyWebsite = () => {
                   </div>
                   {project.media && (
                     <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
-                      📸 {project.media.length} медия
-                      {project.media.some((m) => m.type === "video") && (
-                        <Play
-                          size={16}
-                          className="text-red-600"
-                          fill="currentColor"
-                        />
-                      )}
+                      📸 {project.media.length} {t.projectsSection.media}
                     </div>
                   )}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white/90 px-6 py-3 rounded-full font-bold text-slate-800 shadow-2xl">
-                      Виж галерия →
+                      {t.projectsSection.viewGallery} →
                     </div>
                   </div>
                 </div>
@@ -589,7 +848,7 @@ const KitanSkyWebsite = () => {
 
           <div className="mt-16 text-center">
             <p className="text-slate-500 text-lg bg-stone-50 inline-block px-8 py-4 rounded-full border border-stone-200">
-              ✨ Реални снимки и видеа от моите проекти
+              ✨ {t.projectsSection.realPhotos}
             </p>
           </div>
         </div>
@@ -601,14 +860,14 @@ const KitanSkyWebsite = () => {
       >
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
-            Контакти
+            {t.contact.title}
           </h2>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-6">
               <div className="bg-white p-10 rounded-3xl border-2 border-stone-200 shadow-xl">
                 <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text">
-                  Свържете се с мен
+                  {t.contact.connectTitle}
                 </h3>
 
                 <div className="space-y-6">
@@ -628,22 +887,26 @@ const KitanSkyWebsite = () => {
                     <div className="bg-gradient-to-br from-stone-600 to-neutral-700 p-3 rounded-2xl group-hover:scale-110 transition-transform">
                       <Phone className="text-white" size={24} />
                     </div>
-                    <span className="text-lg font-medium">
+                    <a href="tel:+359878349453" className="text-lg font-medium">
                       +359 878 34 94 53
-                    </span>
+                    </a>
                   </div>
 
                   <div className="flex items-center gap-4 text-slate-700 group">
                     <div className="bg-gradient-to-br from-stone-600 to-neutral-700 p-3 rounded-2xl group-hover:scale-110 transition-transform">
                       <MapPin className="text-white" size={24} />
                     </div>
-                    <span className="text-lg font-medium">София, България</span>
+                    <span className="text-lg font-medium">
+                      {language === "bg"
+                        ? "София, България"
+                        : "Sofia, Bulgaria"}
+                    </span>
                   </div>
                 </div>
 
                 <div className="mt-10 pt-8 border-t-2 border-stone-100">
                   <p className="text-slate-700 mb-4 font-semibold">
-                    Последвай ме:
+                    {t.contact.followMe}
                   </p>
                   <div className="flex gap-4">
                     <a
@@ -662,7 +925,7 @@ const KitanSkyWebsite = () => {
 
             <div className="bg-white p-10 rounded-3xl border-2 border-stone-200 shadow-xl">
               <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text">
-                Изпрати запитване
+                {t.contact.sendTitle}
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -671,7 +934,7 @@ const KitanSkyWebsite = () => {
                     htmlFor="name"
                     className="block text-sm font-bold text-slate-700 mb-2"
                   >
-                    Име *
+                    {t.contact.name} *
                   </label>
                   <input
                     type="text"
@@ -681,7 +944,7 @@ const KitanSkyWebsite = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
-                    placeholder="Вашето име"
+                    placeholder={t.contact.namePlaceholder}
                   />
                 </div>
 
@@ -690,7 +953,7 @@ const KitanSkyWebsite = () => {
                     htmlFor="email"
                     className="block text-sm font-bold text-slate-700 mb-2"
                   >
-                    Имейл *
+                    {t.contact.email} *
                   </label>
                   <input
                     type="email"
@@ -700,7 +963,7 @@ const KitanSkyWebsite = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
-                    placeholder="your.email@example.com"
+                    placeholder={t.contact.emailPlaceholder}
                   />
                 </div>
 
@@ -709,7 +972,7 @@ const KitanSkyWebsite = () => {
                     htmlFor="phone"
                     className="block text-sm font-bold text-slate-700 mb-2"
                   >
-                    Телефон
+                    {t.contact.phone}
                   </label>
                   <input
                     type="tel"
@@ -718,7 +981,7 @@ const KitanSkyWebsite = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
-                    placeholder="+359 XXX XXX XXX"
+                    placeholder={t.contact.phonePlaceholder}
                   />
                 </div>
 
@@ -727,7 +990,7 @@ const KitanSkyWebsite = () => {
                     htmlFor="message"
                     className="block text-sm font-bold text-slate-700 mb-2"
                   >
-                    Съобщение *
+                    {t.contact.message} *
                   </label>
                   <textarea
                     id="message"
@@ -737,7 +1000,7 @@ const KitanSkyWebsite = () => {
                     onChange={handleInputChange}
                     rows="5"
                     className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium resize-none"
-                    placeholder="Разкажете ми за вашия проект..."
+                    placeholder={t.contact.messagePlaceholder}
                   />
                 </div>
 
@@ -747,20 +1010,19 @@ const KitanSkyWebsite = () => {
                   className="w-full px-10 py-5 bg-gradient-to-r from-stone-700 to-neutral-700 hover:from-stone-800 hover:to-neutral-800 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl shadow-stone-500/30 text-lg"
                 >
                   {formStatus === "sending"
-                    ? "Изпраща се..."
-                    : "Изпрати запитване →"}
+                    ? t.contact.sending
+                    : `${t.contact.sendButton} →`}
                 </button>
 
                 {formStatus === "success" && (
                   <div className="bg-green-100 border-2 border-green-500 text-green-700 px-6 py-4 rounded-2xl font-semibold">
-                    ✓ Съобщението е изпратено успешно! Ще се свържа с вас скоро.
+                    ✓ {t.contact.successMessage}
                   </div>
                 )}
 
                 {formStatus === "error" && (
                   <div className="bg-red-100 border-2 border-red-500 text-red-700 px-6 py-4 rounded-2xl font-semibold">
-                    ✗ Грешка при изпращане. Моля, опитайте отново или ми пишете
-                    директно на имейл.
+                    ✗ {t.contact.errorMessage}
                   </div>
                 )}
               </form>
@@ -811,23 +1073,11 @@ const KitanSkyWebsite = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="bg-black/50 backdrop-blur-sm rounded-3xl p-8">
-              {currentProject.media[currentMediaIndex].type === "image" ? (
-                <img
-                  src={currentProject.media[currentMediaIndex].src}
-                  alt={currentProject.media[currentMediaIndex].caption}
-                  className="w-full h-auto max-h-[80vh] object-contain rounded-2xl"
-                />
-              ) : (
-                <video
-                  src={currentProject.media[currentMediaIndex].src}
-                  controls
-                  autoPlay
-                  className="w-full h-auto max-h-[80vh] rounded-2xl"
-                  poster={currentProject.media[currentMediaIndex].poster}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              )}
+              <img
+                src={currentProject.media[currentMediaIndex].src}
+                alt={currentProject.media[currentMediaIndex].caption}
+                className="w-full h-auto max-h-[80vh] object-contain rounded-2xl"
+              />
 
               <div className="mt-6 text-center">
                 <p className="text-white text-xl font-semibold mb-2">
@@ -858,11 +1108,9 @@ const KitanSkyWebsite = () => {
       <footer className="bg-gradient-to-r from-slate-900 to-slate-800 border-t-4 border-stone-600 py-12 px-4">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-stone-100 text-lg font-semibold">
-            © 2024 KitanSky Project Management. Всички права запазени.
+            {t.footer.rights}
           </p>
-          <p className="text-slate-400 mt-3">
-            Разработено за строителната индустрия
-          </p>
+          <p className="text-slate-400 mt-3">{t.footer.tagline}</p>
         </div>
       </footer>
 
