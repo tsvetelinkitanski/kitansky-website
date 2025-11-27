@@ -12,15 +12,15 @@ import {
   ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Play,
   Globe,
+  Cookie,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
 const KitanSkyWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [language, setLanguage] = useState("bg"); // BG by default
+  const [language, setLanguage] = useState("bg");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,6 +31,25 @@ const KitanSkyWebsite = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
+  const [cookieConsent, setCookieConsent] = useState(null);
+
+  // Check cookie consent on mount
+  useEffect(() => {
+    const consent = localStorage.getItem("cookieConsent");
+    if (consent) {
+      setCookieConsent(consent === "accepted");
+    }
+  }, []);
+
+  const acceptCookies = () => {
+    localStorage.setItem("cookieConsent", "accepted");
+    setCookieConsent(true);
+  };
+
+  const declineCookies = () => {
+    localStorage.setItem("cookieConsent", "declined");
+    setCookieConsent(false);
+  };
 
   // Translations
   const translations = {
@@ -41,6 +60,8 @@ const KitanSkyWebsite = () => {
         projects: "Проекти",
         services: "Услуги",
         contact: "Контакти",
+        blog: "Блог",
+        privacy: "Поверителност",
       },
       hero: {
         title: "KitanSky",
@@ -90,7 +111,8 @@ const KitanSkyWebsite = () => {
         title: "Проекти",
         viewGallery: "Виж галерия",
         media: "медия",
-        realPhotos: "Реални снимки и видеа от моите проекти",
+        disclaimer:
+          "Изображенията са примерни илюстрации. Реалните снимки от завършените проекти не могат да бъдат публикувани онлайн поради авторски права и политики за поверителност на клиентите.",
       },
       contact: {
         title: "Контакти",
@@ -115,32 +137,65 @@ const KitanSkyWebsite = () => {
       footer: {
         rights: "© 2024 KitanSky Project Management. Всички права запазени.",
         tagline: "Разработено за строителната индустрия",
+        privacy: "Политика за поверителност",
+      },
+      cookies: {
+        title: "Бисквитки",
+        message:
+          "Този сайт използва бисквитки за подобряване на потребителското изживяване и анализ на трафика.",
+        accept: "Приемам",
+        decline: "Отказвам",
+        learnMore: "Научете повече",
+      },
+      privacy: {
+        title: "Политика за поверителност",
+        lastUpdated: "Последна актуализация: 19 ноември 2024",
+        intro:
+          "KitanSky зачита вашата поверителност. Тази политика описва как събираме, използваме и защитаваме вашата лична информация.",
+        section1Title: "1. Информация, която събираме",
+        section1Text:
+          "Събираме само информацията, която доброволно предоставяте чрез контактната форма: име, имейл адрес, телефонен номер и съобщение.",
+        section2Title: "2. Как използваме информацията",
+        section2Text:
+          "Използваме предоставената информация единствено за да отговорим на вашето запитване и да предоставим исканата услуга. Не продаваме и не споделяме вашите данни с трети страни.",
+        section3Title: "3. Бисквитки",
+        section3Text:
+          "Използваме само необходими бисквитки за функционалност на сайта. Можете да откажете използването на бисквитки чрез банера за съгласие.",
+        section4Title: "4. Вашите права",
+        section4Text:
+          "Имате право на достъп, коригиране или изтриване на вашите лични данни. За упражняване на тези права, свържете се с нас на kitanskitsvetelin@gmail.com.",
+        section5Title: "5. Сигурност",
+        section5Text:
+          "Прилагаме подходящи технически и организационни мерки за защита на вашите лични данни.",
+        section6Title: "6. Контакт",
+        section6Text: "За въпроси относно тази политика, свържете се с нас:",
+        close: "Затвори",
       },
       projects: {
         doml2: {
-          title: "ДОМЛ2 - Жилищен комплекс",
-          company: "Домекс",
-          location: "София, кв. Люлин",
+          title: "Жилищен комплекс - Нов квартал",
+          company: "Строителна компания",
+          location: "София",
           description:
-            "10,000 м² РЗП жилищен комплекс със 144 апартамента, EPS топлоизолация и специфична архитектура. Пълно управление от изкоп и укрепване до Акт 16 и довършителни работи.",
+            "Цялостно управление на строителството на изцяло нов жилищен квартал. Пълна координация от изкопни работи до Акт 16 и довършителни работи. Организация на всички етапи - конструкция, фасади (EPS и окачена фасада), инсталации, общи части. Изготвяне на графици, договаряне на цени с подизпълнители и контрол на качеството.",
           role: "Project Manager",
           category: "Жилищно строителство",
         },
         corner: {
-          title: "The Corner",
-          company: "Инфинити",
-          location: "София, ул. Черковна 20",
+          title: "Жилищна сграда - Фасадни системи и инсталации",
+          company: "Строителна компания",
+          location: "София",
           description:
-            "Участие в целия строителен процес от изкоп до довършителни работи като технически ръководител на проекта.",
+            "Управление на фасадни работи (EPS топлоизолация и окачена фасада) и технически инсталации. Организация и координация на подово отопление, изработване на изпълнителни графици и контрол на срокове. Договаряне с подизпълнители и осигуряване на качество.",
           role: "Технически ръководител",
-          category: "Довършителни работи",
+          category: "Жилищно строителство",
         },
         fountains: {
-          title: "Фонтани - Green District",
-          company: "Домекс",
-          location: "София, Драгалевци",
+          title: "Жилищна сграда - Общи части по дизайнерски проект",
+          company: "Строителна компания",
+          location: "София",
           description:
-            "Луксозен жилищен комплекс с модерна архитектура и зелени площи. Управление на строителния процес от основи до завършване.",
+            "Изпълнение на общи части на жилищна сграда по дизайнерски проект. Координация на довършителни работи, управление на различни занаятчийски екипи и спазване на проектна документация. Организация на материали и контрол на качеството на изпълнение.",
           role: "Project Manager",
           category: "Жилищно строителство",
         },
@@ -153,6 +208,8 @@ const KitanSkyWebsite = () => {
         projects: "Projects",
         services: "Services",
         contact: "Contact",
+        blog: "Blog",
+        privacy: "Privacy",
       },
       hero: {
         title: "KitanSky",
@@ -203,7 +260,8 @@ const KitanSkyWebsite = () => {
         title: "Projects",
         viewGallery: "View Gallery",
         media: "media",
-        realPhotos: "Real photos and videos from my projects",
+        disclaimer:
+          "Images are illustrative examples. Actual photos from completed projects cannot be published online due to copyright and client confidentiality policies.",
       },
       contact: {
         title: "Contact",
@@ -227,32 +285,65 @@ const KitanSkyWebsite = () => {
       footer: {
         rights: "© 2024 KitanSky Project Management. All rights reserved.",
         tagline: "Developed with ❤️ for the construction industry",
+        privacy: "Privacy Policy",
+      },
+      cookies: {
+        title: "Cookies",
+        message:
+          "This website uses cookies to improve user experience and analyze traffic.",
+        accept: "Accept",
+        decline: "Decline",
+        learnMore: "Learn more",
+      },
+      privacy: {
+        title: "Privacy Policy",
+        lastUpdated: "Last updated: November 19, 2024",
+        intro:
+          "KitanSky respects your privacy. This policy describes how we collect, use, and protect your personal information.",
+        section1Title: "1. Information We Collect",
+        section1Text:
+          "We only collect information you voluntarily provide through the contact form: name, email address, phone number, and message.",
+        section2Title: "2. How We Use Information",
+        section2Text:
+          "We use the provided information solely to respond to your inquiry and provide the requested service. We do not sell or share your data with third parties.",
+        section3Title: "3. Cookies",
+        section3Text:
+          "We only use necessary cookies for site functionality. You can decline cookie usage through the consent banner.",
+        section4Title: "4. Your Rights",
+        section4Text:
+          "You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at kitanskitsvetelin@gmail.com.",
+        section5Title: "5. Security",
+        section5Text:
+          "We implement appropriate technical and organizational measures to protect your personal data.",
+        section6Title: "6. Contact",
+        section6Text: "For questions about this policy, contact us:",
+        close: "Close",
       },
       projects: {
         doml2: {
-          title: "DOML2 - Residential Complex",
-          company: "Domex",
-          location: "Sofia, Lyulin District",
+          title: "Residential Complex - New District",
+          company: "Construction Company",
+          location: "Sofia",
           description:
-            "10,000 m² GFA residential complex with 144 apartments, EPS insulation and specific architecture. Complete management from excavation and reinforcement to Act 16 and finishing works.",
+            "Complete management of construction of an entirely new residential district. Full coordination from excavation to Act 16 and finishing works. Organization of all stages - structure, facades (EPS and ventilated facade), installations, common areas. Schedule preparation, subcontractor price negotiation, and quality control.",
           role: "Project Manager",
           category: "Residential Construction",
         },
         corner: {
-          title: "The Corner",
-          company: "Infinity",
-          location: "Sofia, 20 Cherkov St.",
+          title: "Residential Building - Facade Systems and Installations",
+          company: "Construction Company",
+          location: "Sofia",
           description:
-            "Participation in the entire construction process from excavation to finishing works as technical manager of the project.",
+            "Management of facade works (EPS insulation and ventilated facade) and technical installations. Organization and coordination of underfloor heating, execution schedule development, and deadline control. Subcontractor negotiations and quality assurance.",
           role: "Technical Manager",
-          category: "Finishing Works",
+          category: "Residential Construction",
         },
         fountains: {
-          title: "Fountains - Green District",
-          company: "Domex",
-          location: "Sofia, Dragalevtsi",
+          title: "Residential Building - Common Areas by Design Project",
+          company: "Construction Company",
+          location: "Sofia",
           description:
-            "Luxury residential complex with modern architecture and green spaces. Management of the construction process from foundations to completion.",
+            "Execution of common areas in residential building according to design project. Coordination of finishing works, management of various craft teams, and adherence to project documentation. Material organization and execution quality control.",
           role: "Project Manager",
           category: "Residential Construction",
         },
@@ -283,10 +374,8 @@ const KitanSkyWebsite = () => {
               "project management sofia, construction sofia, renovation services, residential construction, interior design, construction consulting, technical supervision, project manager bulgaria",
           };
 
-    // Set title
     document.title = metaTags.title;
 
-    // Set or update meta description
     let metaDescription = document.querySelector('meta[name="description"]');
     if (!metaDescription) {
       metaDescription = document.createElement("meta");
@@ -295,7 +384,6 @@ const KitanSkyWebsite = () => {
     }
     metaDescription.content = metaTags.description;
 
-    // Set or update meta keywords
     let metaKeywords = document.querySelector('meta[name="keywords"]');
     if (!metaKeywords) {
       metaKeywords = document.createElement("meta");
@@ -304,7 +392,6 @@ const KitanSkyWebsite = () => {
     }
     metaKeywords.content = metaTags.keywords;
 
-    // Open Graph tags
     const ogTags = [
       { property: "og:title", content: metaTags.title },
       { property: "og:description", content: metaTags.description },
@@ -324,7 +411,6 @@ const KitanSkyWebsite = () => {
       metaTag.content = tag.content;
     });
 
-    // Structured Data (JSON-LD) for Local Business
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
@@ -480,6 +566,7 @@ const KitanSkyWebsite = () => {
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [galleryOpen, currentMediaIndex, currentProject]);
 
+  // Projects with royalty-free Unsplash images
   const projects = [
     {
       id: 1,
@@ -488,29 +575,25 @@ const KitanSkyWebsite = () => {
       location: t.projects.doml2.location,
       description: t.projects.doml2.description,
       role: t.projects.doml2.role,
-      image: "/projects/doml2_3d.jpg",
+      image:
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&h=600&fit=crop",
       category: t.projects.doml2.category,
       media: [
         {
           type: "image",
-          src: "/projects/doml2_3d.jpg",
-          caption: language === "bg" ? "3D визуализация" : "3D Visualization",
+          src: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Външен изглед" : "Exterior view",
         },
         {
           type: "image",
-          src: "/projects/DJI_0363.jpg",
-          caption:
-            language === "bg"
-              ? "Aerial view - строителство"
-              : "Aerial view - construction",
+          src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Фасада" : "Facade",
         },
         {
           type: "image",
-          src: "/projects/doml2_drone2.jpg",
+          src: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200&h=900&fit=crop",
           caption:
-            language === "bg"
-              ? "Drone снимка - общ изглед"
-              : "Drone photo - overview",
+            language === "bg" ? "Строителен процес" : "Construction process",
         },
       ],
     },
@@ -521,34 +604,24 @@ const KitanSkyWebsite = () => {
       location: t.projects.corner.location,
       description: t.projects.corner.description,
       role: t.projects.corner.role,
-      image: "/projects/IMG_0146.jpg",
+      image:
+        "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
       category: t.projects.corner.category,
       media: [
         {
           type: "image",
-          src: "/projects/IMG_0146.jpg",
-          caption:
-            language === "bg" ? "Довършителни работи" : "Finishing works",
+          src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Бизнес сграда" : "Business building",
         },
         {
           type: "image",
-          src: "/projects/IMG_0147.jpg",
+          src: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=900&fit=crop",
           caption: language === "bg" ? "Интериор" : "Interior",
         },
         {
           type: "image",
-          src: "/projects/IMG_0148.jpg",
-          caption: language === "bg" ? "Детайли" : "Details",
-        },
-        {
-          type: "image",
-          src: "/projects/IMG_0526.jpg",
-          caption: language === "bg" ? "Фасада" : "Facade",
-        },
-        {
-          type: "image",
-          src: "/projects/IMG_0529.jpg",
-          caption: language === "bg" ? "Завършен изглед" : "Finished view",
+          src: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Работно пространство" : "Workspace",
         },
       ],
     },
@@ -559,53 +632,25 @@ const KitanSkyWebsite = () => {
       location: t.projects.fountains.location,
       description: t.projects.fountains.description,
       role: t.projects.fountains.role,
-      image: "/projects/fountains_3d_sunset.jpg",
+      image:
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=600&fit=crop",
       category: t.projects.fountains.category,
       media: [
         {
           type: "image",
-          src: "/projects/fountains_3d_sunset.jpg",
+          src: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Луксозна сграда" : "Luxury building",
+        },
+        {
+          type: "image",
+          src: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=900&fit=crop",
           caption:
-            language === "bg"
-              ? "3D визуализация - залез"
-              : "3D visualization - sunset",
+            language === "bg" ? "Модерна архитектура" : "Modern architecture",
         },
         {
           type: "image",
-          src: "/projects/fountains_3d_day.jpg",
-          caption:
-            language === "bg"
-              ? "3D визуализация - ден"
-              : "3D visualization - day",
-        },
-        {
-          type: "image",
-          src: "/projects/fountains_construction1.jpg",
-          caption:
-            language === "bg" ? "Строителен процес" : "Construction process",
-        },
-        {
-          type: "image",
-          src: "/projects/fountains_construction2.jpg",
-          caption: language === "bg" ? "Конструкция" : "Structure",
-        },
-        {
-          type: "image",
-          src: "/projects/fountains_construction3.jpg",
-          caption: language === "bg" ? "Груб строеж" : "Rough construction",
-        },
-        {
-          type: "image",
-          src: "/projects/fountains_construction4.jpg",
-          caption:
-            language === "bg"
-              ? "Детайли на конструкцията"
-              : "Structure details",
-        },
-        {
-          type: "image",
-          src: "/projects/fountains_construction5.jpg",
-          caption: language === "bg" ? "Общ изглед на обекта" : "Site overview",
+          src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=900&fit=crop",
+          caption: language === "bg" ? "Вътрешен двор" : "Interior courtyard",
         },
       ],
     },
@@ -636,6 +681,41 @@ const KitanSkyWebsite = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-neutral-200/30 rounded-full blur-3xl animate-pulse delay-700"></div>
       </div>
 
+      {/* Cookie Consent Banner */}
+      {cookieConsent === null && (
+        <div className="fixed bottom-0 left-0 right-0 bg-slate-900 text-white p-6 shadow-2xl z-50 border-t-4 border-stone-600">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <Cookie size={32} className="text-stone-300 flex-shrink-0" />
+              <div>
+                <h3 className="font-bold text-lg mb-1">{t.cookies.title}</h3>
+                <p className="text-stone-300 text-sm">{t.cookies.message}</p>
+              </div>
+            </div>
+            <div className="flex gap-3 flex-shrink-0">
+              <a
+                href="/privacy.html"
+                className="px-4 py-2 text-stone-300 hover:text-white transition-colors text-sm underline"
+              >
+                {t.cookies.learnMore}
+              </a>
+              <button
+                onClick={declineCookies}
+                className="px-6 py-2 bg-stone-700 hover:bg-stone-600 rounded-full transition-colors font-medium"
+              >
+                {t.cookies.decline}
+              </button>
+              <button
+                onClick={acceptCookies}
+                className="px-6 py-2 bg-gradient-to-r from-stone-600 to-neutral-700 hover:from-stone-700 hover:to-neutral-800 rounded-full transition-colors font-bold shadow-lg"
+              >
+                {t.cookies.accept}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg z-50 border-b border-stone-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -646,24 +726,49 @@ const KitanSkyWebsite = () => {
             </div>
 
             <div className="hidden md:flex items-center space-x-8">
-              {Object.values(t.nav).map((item, index) => (
-                <button
-                  key={item}
-                  onClick={() =>
-                    scrollToSection(
-                      ["home", "about", "projects", "services", "contact"][
-                        index
-                      ]
-                    )
-                  }
-                  className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
-                >
-                  {item}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
-                </button>
-              ))}
+              {Object.values(t.nav).map((item, index) => {
+                if (index === 5) {
+                  return (
+                    <a
+                      key={item}
+                      href="/blog.html"
+                      className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
+                    >
+                      {item}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                  );
+                }
+                if (index === 6) {
+                  return (
+                    <a
+                      key={item}
+                      href="/privacy.html"
+                      className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
+                    >
+                      {item}
+                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                  );
+                }
+                return (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      scrollToSection(
+                        ["home", "about", "projects", "services", "contact"][
+                          index
+                        ]
+                      );
+                    }}
+                    className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
+                  >
+                    {item}
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-stone-700 group-hover:w-full transition-all duration-300"></span>
+                  </button>
+                );
+              })}
 
-              {/* Language Toggle */}
               <button
                 onClick={toggleLanguage}
                 className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-stone-600 to-neutral-700 text-white rounded-full hover:from-stone-700 hover:to-neutral-800 transition-all duration-300 font-bold shadow-lg"
@@ -694,21 +799,45 @@ const KitanSkyWebsite = () => {
         {isMenuOpen && (
           <div className="md:hidden bg-white border-t border-stone-200">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {Object.values(t.nav).map((item, index) => (
-                <button
-                  key={item}
-                  onClick={() =>
-                    scrollToSection(
-                      ["home", "about", "projects", "services", "contact"][
-                        index
-                      ]
-                    )
-                  }
-                  className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
+              {Object.values(t.nav).map((item, index) => {
+                if (index === 5) {
+                  return (
+                    <a
+                      key={item}
+                      href="/blog.html"
+                      className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
+                    >
+                      {item}
+                    </a>
+                  );
+                }
+                if (index === 6) {
+                  return (
+                    <a
+                      key={item}
+                      href="/privacy.html"
+                      className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
+                    >
+                      {item}
+                    </a>
+                  );
+                }
+                return (
+                  <button
+                    key={item}
+                    onClick={() => {
+                      scrollToSection(
+                        ["home", "about", "projects", "services", "contact"][
+                          index
+                        ]
+                      );
+                    }}
+                    className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
+                  >
+                    {item}
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}
@@ -902,9 +1031,33 @@ const KitanSkyWebsite = () => {
 
       <section id="projects" className="py-24 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-8 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
             {t.projectsSection.title}
           </h2>
+
+          {/* Disclaimer за снимките */}
+          <div className="max-w-4xl mx-auto mb-12 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-lg">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 mt-1">
+                <svg
+                  className="w-6 h-6 text-amber-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
+                {t.projectsSection.disclaimer}
+              </p>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
@@ -956,12 +1109,6 @@ const KitanSkyWebsite = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="mt-16 text-center">
-            <p className="text-slate-500 text-lg bg-stone-50 inline-block px-8 py-4 rounded-full border border-stone-200">
-              ✨ {t.projectsSection.realPhotos}
-            </p>
           </div>
         </div>
       </section>
@@ -1223,6 +1370,21 @@ const KitanSkyWebsite = () => {
             {t.footer.rights}
           </p>
           <p className="text-slate-400 mt-3">{t.footer.tagline}</p>
+          <div className="flex gap-4 justify-center mt-4">
+            <a
+              href="/blog.html"
+              className="text-stone-300 hover:text-white underline transition-colors"
+            >
+              {t.nav.blog}
+            </a>
+            <span className="text-stone-600">•</span>
+            <a
+              href="/privacy.html"
+              className="text-stone-300 hover:text-white underline transition-colors"
+            >
+              {t.footer.privacy}
+            </a>
+          </div>
         </div>
       </footer>
 

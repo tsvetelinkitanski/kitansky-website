@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2357534e'/%3E%3Ctext x='50' y='75' font-family='Arial' font-size='70' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+
+  <title>Политика за поверителност - KitanSky</title>
+  <meta name="description" content="Политика за поверителност на KitanSky Project Management" />
+  <meta name="robots" content="index, follow" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #1e293b;
+      background: linear-gradient(135deg, #fafaf9 0%, #e7e5e4 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    header {
+      background: white;
+      border-bottom: 2px solid #d6d3d1;
+      padding: 1.5rem 0;
+      margin-bottom: 3rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #57534e 0%, #78716c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #57534e 0%, #78716c 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(87, 83, 78, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(87, 83, 78, 0.4);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #57534e;
+      border: 2px solid #d6d3d1;
+    }
+
+    .btn-secondary:hover {
+      background: #fafaf9;
+      border-color: #a8a29e;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border: 2px solid #e7e5e4;
+    }
+
+    .shield-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, #57534e 0%, #78716c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .last-updated {
+      color: #78716c;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .content-section {
+      margin-bottom: 2.5rem;
+    }
+
+    .content-section h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 1rem;
+    }
+
+    .content-section p {
+      color: #475569;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: #334155;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-info {
+      background: linear-gradient(135deg, #fafaf9 0%, #f5f5f4 100%);
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-top: 1rem;
+      border: 1px solid #e7e5e4;
+    }
+
+    .contact-info p {
+      margin: 0.5rem 0;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      color: #78716c;
+      border-top: 2px solid #e7e5e4;
+    }
+
+    .language-switcher {
+      position: relative;
+    }
+
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: linear-gradient(135deg, #57534e 0%, #78716c 100%);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 12px rgba(87, 83, 78, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .lang-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(87, 83, 78, 0.4);
+    }
+
+    .lang-content {
+      display: none;
+    }
+
+    .lang-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .header-content {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>KitanSky</h1>
+      <div class="btn-group">
+        <a href="/" class="btn btn-secondary">← Начало</a>
+        <button id="langToggle" class="lang-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span id="langText">EN</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Bulgarian Content -->
+    <div id="bg-content" class="lang-content active">
+      <div class="card">
+        <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="#57534e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+
+        <h2>Политика за поверителност</h2>
+        <p class="last-updated">Последна актуализация: 19 ноември 2024</p>
+
+        <p class="intro-text">
+          KitanSky зачита вашата поверителност. Тази политика описва как събираме, използваме и защитаваме вашата лична информация.
+        </p>
+
+        <div class="content-section">
+          <h3>1. Информация, която събираме</h3>
+          <p>
+            Събираме само информацията, която доброволно предоставяте чрез контактната форма: име, имейл адрес, телефонен номер и съобщение.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>2. Как използваме информацията</h3>
+          <p>
+            Използваме предоставената информация единствено за да отговорим на вашето запитване и да предоставим исканата услуга. Не продаваме и не споделяме вашите данни с трети страни.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>3. Бисквитки</h3>
+          <p>
+            Използваме само необходими бисквитки за функционалност на сайта. Можете да откажете използването на бисквитки чрез банера за съгласие.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>4. Вашите права</h3>
+          <p>
+            Имате право на достъп, коригиране или изтриване на вашите лични данни. За упражняване на тези права, свържете се с нас на kitanskitsvetelin@gmail.com.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>5. Сигурност</h3>
+          <p>
+            Прилагаме подходящи технически и организационни мерки за защита на вашите лични данни.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>6. Контакт</h3>
+          <p>За въпроси относно тази политика, свържете се с нас:</p>
+          <div class="contact-info">
+            <p>📧 Email: kitanskitsvetelin@gmail.com</p>
+            <p>📞 Телефон: +359 878 34 94 53</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- English Content -->
+    <div id="en-content" class="lang-content">
+      <div class="card">
+        <svg class="shield-icon" viewBox="0 0 24 24" fill="none" stroke="#57534e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        </svg>
+
+        <h2>Privacy Policy</h2>
+        <p class="last-updated">Last updated: November 19, 2024</p>
+
+        <p class="intro-text">
+          KitanSky respects your privacy. This policy describes how we collect, use, and protect your personal information.
+        </p>
+
+        <div class="content-section">
+          <h3>1. Information We Collect</h3>
+          <p>
+            We only collect information you voluntarily provide through the contact form: name, email address, phone number, and message.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>2. How We Use Information</h3>
+          <p>
+            We use the provided information solely to respond to your inquiry and provide the requested service. We do not sell or share your data with third parties.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>3. Cookies</h3>
+          <p>
+            We only use necessary cookies for site functionality. You can decline cookie usage through the consent banner.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>4. Your Rights</h3>
+          <p>
+            You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at kitanskitsvetelin@gmail.com.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>5. Security</h3>
+          <p>
+            We implement appropriate technical and organizational measures to protect your personal data.
+          </p>
+        </div>
+
+        <div class="content-section">
+          <h3>6. Contact</h3>
+          <p>For questions about this policy, contact us:</p>
+          <div class="contact-info">
+            <p>📧 Email: kitanskitsvetelin@gmail.com</p>
+            <p>📞 Phone: +359 878 34 94 53</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 KitanSky Project Management. Всички права запазени.</p>
+  </footer>
+
+  <script>
+    const langToggle = document.getElementById('langToggle');
+    const langText = document.getElementById('langText');
+    const bgContent = document.getElementById('bg-content');
+    const enContent = document.getElementById('en-content');
+    const homeBtn = document.querySelector('.btn-secondary');
+
+    let currentLang = 'bg';
+
+    langToggle.addEventListener('click', () => {
+      if (currentLang === 'bg') {
+        currentLang = 'en';
+        langText.textContent = 'BG';
+        bgContent.classList.remove('active');
+        enContent.classList.add('active');
+        homeBtn.textContent = '← Home';
+        document.title = 'Privacy Policy - KitanSky';
+        document.documentElement.lang = 'en';
+      } else {
+        currentLang = 'bg';
+        langText.textContent = 'EN';
+        enContent.classList.remove('active');
+        bgContent.classList.add('active');
+        homeBtn.textContent = '← Начало';
+        document.title = 'Политика за поверителност - KitanSky';
+        document.documentElement.lang = 'bg';
+      }
+    });
+  </script>
+</body>
+</html>
