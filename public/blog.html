@@ -1223,6 +1223,19 @@
 
     let currentLang = 'bg';
 
+    // Load saved language preference on page load
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage && savedLanguage === 'en') {
+      currentLang = 'en';
+      langText.textContent = 'BG';
+      bgContent.classList.remove('active');
+      enContent.classList.add('active');
+      homeBtn.textContent = '← Home';
+      footerText.textContent = '© 2024 KitanSky Project Management. All rights reserved.';
+      document.title = 'Blog - Expert Articles on Project Management | KitanSky';
+      document.documentElement.lang = 'en';
+    }
+
     langToggle.addEventListener('click', () => {
       if (currentLang === 'bg') {
         currentLang = 'en';
@@ -1233,6 +1246,7 @@
         footerText.textContent = '© 2024 KitanSky Project Management. All rights reserved.';
         document.title = 'Blog - Expert Articles on Project Management | KitanSky';
         document.documentElement.lang = 'en';
+        localStorage.setItem('language', 'en');
       } else {
         currentLang = 'bg';
         langText.textContent = 'EN';
@@ -1242,6 +1256,7 @@
         footerText.textContent = '© 2024 KitanSky Project Management. Всички права запазени.';
         document.title = 'Блог - Експертни статии за Project Management | KitanSky';
         document.documentElement.lang = 'bg';
+        localStorage.setItem('language', 'bg');
       }
 
       // Hide all articles when switching language

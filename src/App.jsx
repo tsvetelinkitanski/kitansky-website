@@ -33,11 +33,17 @@ const KitanSkyWebsite = () => {
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [cookieConsent, setCookieConsent] = useState(null);
 
-  // Check cookie consent on mount
+  // Check cookie consent and language preference on mount
   useEffect(() => {
     const consent = localStorage.getItem("cookieConsent");
     if (consent) {
       setCookieConsent(consent === "accepted");
+    }
+
+    // Load saved language preference
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage && (savedLanguage === "bg" || savedLanguage === "en")) {
+      setLanguage(savedLanguage);
     }
   }, []);
 
@@ -486,7 +492,9 @@ const KitanSkyWebsite = () => {
   };
 
   const toggleLanguage = () => {
-    setLanguage(language === "bg" ? "en" : "bg");
+    const newLanguage = language === "bg" ? "en" : "bg";
+    setLanguage(newLanguage);
+    localStorage.setItem("language", newLanguage);
   };
 
   const handleSubmit = async (e) => {

@@ -387,6 +387,18 @@
 
     let currentLang = 'bg';
 
+    // Load saved language preference on page load
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage && savedLanguage === 'en') {
+      currentLang = 'en';
+      langText.textContent = 'BG';
+      bgContent.classList.remove('active');
+      enContent.classList.add('active');
+      homeBtn.textContent = '← Home';
+      document.title = 'Privacy Policy - KitanSky';
+      document.documentElement.lang = 'en';
+    }
+
     langToggle.addEventListener('click', () => {
       if (currentLang === 'bg') {
         currentLang = 'en';
@@ -396,6 +408,7 @@
         homeBtn.textContent = '← Home';
         document.title = 'Privacy Policy - KitanSky';
         document.documentElement.lang = 'en';
+        localStorage.setItem('language', 'en');
       } else {
         currentLang = 'bg';
         langText.textContent = 'EN';
@@ -404,6 +417,7 @@
         homeBtn.textContent = '← Начало';
         document.title = 'Политика за поверителност - KitanSky';
         document.documentElement.lang = 'bg';
+        localStorage.setItem('language', 'bg');
       }
     });
   </script>
