@@ -511,10 +511,10 @@ const KitanSkyWebsite = () => {
       };
 
       await emailjs.send(
-        "service_94n1zrf",
-        "template_aw7ixk3",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         templateParams,
-        "fEgB1v3-6_xRrvVHg"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       setFormStatus("success");
