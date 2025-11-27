@@ -1,0 +1,28 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fafaf9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e7e5e4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#57534e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#78716c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#d6d3d1" stroke-width="3" rx="24"/>
+
+  <rect x="80" y="80" width="120" height="120" fill="url(#textGradient)" rx="20"/>
+  <text x="140" y="165" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">K</text>
+
+  <text x="240" y="140" font-family="Arial, sans-serif" font-size="72" font-weight="900" fill="url(#textGradient)">KitanSky</text>
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="700" fill="#1e293b">Project Management</text>
+  <text x="80" y="360" font-family="Arial, sans-serif" font-size="36" fill="#78716c">Sofia, Bulgaria</text>
+
+  <text x="80" y="450" font-family="Arial, sans-serif" font-size="28" fill="#57534e">Building Projects Management</text>
+  <text x="80" y="495" font-family="Arial, sans-serif" font-size="28" fill="#57534e">Technical Supervision</text>
+  <text x="80" y="540" font-family="Arial, sans-serif" font-size="28" fill="#57534e">8+ Years Experience</text>
+
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#78716c" text-anchor="end">+359 878 34 94 53</text>
+</svg>

@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
   <url>
-    <loc>https://kitansky.com</loc>
-    <lastmod>2025-11-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kitansky.com/</loc>
+    <lastmod>2024-11-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://kitansky.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://kitansky.com/?lang=en" />
   </url>
+
+  <!-- Blog Main Page -->
   <url>
-    <loc>https://kitansky.com/#about</loc>
-    <lastmod>2025-11-18</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://kitansky.com/blog.html</loc>
+    <lastmod>2024-11-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="bg" href="https://kitansky.com/blog.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://kitansky.com/blog.html?lang=en" />
   </url>
+
+  <!-- Privacy Policy -->
   <url>
-    <loc>https://kitansky.com/#projects</loc>
-    <lastmod>2025-11-18</lastmod>
+    <loc>https://kitansky.com/privacy.html</loc>
+    <lastmod>2024-11-19</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.3</priority>
   </url>
-  <url>
-    <loc>https://kitansky.com/#services</loc>
-    <lastmod>2025-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://kitansky.com/#contact</loc>
-    <lastmod>2025-11-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+
 </urlset>
