@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
@@ -12,6 +12,30 @@ const ContactForm = ({ translations, language }) => {
   });
   const [formStatus, setFormStatus] = useState('');
   const [formErrors, setFormErrors] = useState({});
+
+  // Load saved form data on mount
+  useEffect(() => {
+    const savedData = localStorage.getItem('contactFormData');
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        setFormData(parsed);
+      } catch (e) {
+        console.error('Error loading saved form data:', e);
+      }
+    }
+  }, []);
+
+  // Auto-save form data to localStorage
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (formData.name || formData.email || formData.phone || formData.message) {
+        localStorage.setItem('contactFormData', JSON.stringify(formData));
+      }
+    }, 500); // Debounce for 500ms
+
+    return () => clearTimeout(timeoutId);
+  }, [formData]);
 
   const validateEmail = (email) => {
     const parts = email.split('@');
@@ -103,6 +127,8 @@ const ContactForm = ({ translations, language }) => {
 
       setFormStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
+      // Clear saved form data after successful submission
+      localStorage.removeItem('contactFormData');
 
       setTimeout(() => setFormStatus(''), 5000);
     } catch (error) {
