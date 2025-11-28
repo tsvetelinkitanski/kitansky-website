@@ -28,6 +28,7 @@ const KitanskiWebsite = () => {
     message: "",
   });
   const [formStatus, setFormStatus] = useState("");
+  const [formErrors, setFormErrors] = useState({});
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -497,8 +498,84 @@ const KitanskiWebsite = () => {
     localStorage.setItem("language", newLanguage);
   };
 
+  const validateEmail = (email) => {
+    // Split email into username and domain
+    const parts = email.split('@');
+    if (parts.length !== 2) return false;
+
+    const [username, domain] = parts;
+
+    // Username MUST contain at least one letter (not just numbers)
+    if (!/[a-zA-Z]/.test(username)) return false;
+
+    // Full email format validation
+    const emailRegex = /^[a-zA-Z0-9._+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    const errors = {};
+
+    if (!formData.name.trim()) {
+      errors.name = language === "bg" ? "Моля въведете име" : "Please enter your name";
+    } else if (!/[a-zA-Zа-яА-Я]/.test(formData.name)) {
+      errors.name = language === "bg" ? "Името трябва да съдържа поне една буква" : "Name must contain at least one letter";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = language === "bg" ? "Моля въведете email" : "Please enter your email";
+    } else if (!validateEmail(formData.email)) {
+      errors.email = language === "bg" ? "Невалиден email адрес" : "Invalid email address";
+    }
+
+    // Validate phone if provided
+    if (formData.phone.trim()) {
+      // Phone must start with + or digit, end with digit, proper format
+      const phoneRegex = /^[\+]?[(]?[0-9]{1,3}[)]?[-\s\.]?[(]?[0-9]{1,4}[)]?[-\s\.]?[0-9]{1,4}[-\s\.]?[0-9]{1,9}$/;
+      const digitsOnly = formData.phone.replace(/\D/g, '');
+
+      if (digitsOnly.length < 5) {
+        errors.phone = language === "bg" ? "Телефонният номер трябва да съдържа поне 5 цифри" : "Phone number must contain at least 5 digits";
+      } else if (digitsOnly.length > 15) {
+        errors.phone = language === "bg" ? "Телефонният номер е твърде дълъг" : "Phone number is too long";
+      } else if (!phoneRegex.test(formData.phone)) {
+        errors.phone = language === "bg" ? "Невалиден формат на телефонен номер" : "Invalid phone number format";
+      }
+    }
+
+    if (!formData.message.trim()) {
+      errors.message = language === "bg" ? "Моля въведете съобщение" : "Please enter a message";
+    }
+
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // For phone field, allow only numbers, +, -, spaces, and parentheses
+    if (name === 'phone') {
+      const sanitizedValue = value.replace(/[^0-9+\s\-()]/g, '');
+      setFormData((prev) => ({ ...prev, [name]: sanitizedValue }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+
+    // Clear error for this field when user starts typing
+    if (formErrors[name]) {
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate form before submitting
+    if (!validateForm()) {
+      return;
+    }
+
     setFormStatus("sending");
 
     try {
@@ -526,13 +603,6 @@ const KitanskiWebsite = () => {
       setFormStatus("error");
       setTimeout(() => setFormStatus(""), 5000);
     }
-  };
-
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
   };
 
   const openGallery = (project, mediaIndex = 0) => {
@@ -1195,7 +1265,7 @@ const KitanskiWebsite = () => {
                 {t.contact.sendTitle}
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} noValidate className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
@@ -1210,9 +1280,14 @@ const KitanskiWebsite = () => {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
+                    aria-label={t.contact.name}
+                    aria-required="true"
+                    className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.name ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
                     placeholder={t.contact.namePlaceholder}
                   />
+                  {formErrors.name && (
+                    <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                  )}
                 </div>
 
                 <div>
@@ -1229,9 +1304,14 @@ const KitanskiWebsite = () => {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
+                    aria-label={t.contact.email}
+                    aria-required="true"
+                    className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.email ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
                     placeholder={t.contact.emailPlaceholder}
                   />
+                  {formErrors.email && (
+                    <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>
+                  )}
                 </div>
 
                 <div>
@@ -1247,9 +1327,14 @@ const KitanskiWebsite = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium"
+                    inputMode="numeric"
+                    aria-label={t.contact.phone}
+                    className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.phone ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
                     placeholder={t.contact.phonePlaceholder}
                   />
+                  {formErrors.phone && (
+                    <p className="mt-1 text-sm text-red-600">{formErrors.phone}</p>
+                  )}
                 </div>
 
                 <div>
@@ -1266,9 +1351,14 @@ const KitanskiWebsite = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows="5"
-                    className="w-full px-5 py-4 bg-stone-50/50 border-2 border-stone-200 rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium resize-none"
+                    aria-label={t.contact.message}
+                    aria-required="true"
+                    className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.message ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium resize-none`}
                     placeholder={t.contact.messagePlaceholder}
                   />
+                  {formErrors.message && (
+                    <p className="mt-1 text-sm text-red-600">{formErrors.message}</p>
+                  )}
                 </div>
 
                 <button
