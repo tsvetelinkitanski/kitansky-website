@@ -143,27 +143,10 @@ const Projects = ({ translations, language }) => {
             {t.projectsSection.title}
           </h2>
 
-          <div className="max-w-4xl mx-auto mb-12 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-lg">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 mt-1">
-                <svg
-                  className="w-6 h-6 text-amber-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <p className="text-slate-700 leading-relaxed text-sm sm:text-base">
-                {t.projectsSection.disclaimer}
-              </p>
-            </div>
+          <div className="max-w-4xl mx-auto mb-12 bg-stone-50 border-l-4 border-stone-400 rounded-lg p-6">
+            <p className="text-slate-600 leading-relaxed text-sm">
+              {t.projectsSection.disclaimer}
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
