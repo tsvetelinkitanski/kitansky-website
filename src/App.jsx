@@ -161,10 +161,34 @@ const KitanskiWebsite = () => {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    const elements = document.querySelectorAll('.scroll-animate');
-    elements.forEach((el) => observer.observe(el));
+    // Use MutationObserver to watch for new elements being added
+    const mutationObserver = new MutationObserver(() => {
+      const elements = document.querySelectorAll('.scroll-animate');
+      elements.forEach((el) => {
+        if (!el.classList.contains('observed')) {
+          el.classList.add('observed');
+          observer.observe(el);
+        }
+      });
+    });
 
-    return () => observer.disconnect();
+    // Start observing the document for changes
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Observe initial elements
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((el) => {
+      el.classList.add('observed');
+      observer.observe(el);
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return (
