@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
 
-const KitanSkyWebsite = () => {
+const KitanskiWebsite = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [language, setLanguage] = useState("bg");
@@ -70,7 +70,7 @@ const KitanSkyWebsite = () => {
         privacy: "Поверителност",
       },
       hero: {
-        title: "KitanSky",
+        title: "Kitanski",
         subtitle: "Project & Property Management",
         experience: "8+ години опит",
         projects: "15+ проекта",
@@ -141,7 +141,7 @@ const KitanSkyWebsite = () => {
         messagePlaceholder: "Разкажете ми за вашия проект...",
       },
       footer: {
-        rights: "© 2024 KitanSky Project Management. Всички права запазени.",
+        rights: "© 2024 Kitanski Project Management. Всички права запазени.",
         tagline: "Разработено за строителната индустрия",
         privacy: "Политика за поверителност",
       },
@@ -157,7 +157,7 @@ const KitanSkyWebsite = () => {
         title: "Политика за поверителност",
         lastUpdated: "Последна актуализация: 19 ноември 2024",
         intro:
-          "KitanSky зачита вашата поверителност. Тази политика описва как събираме, използваме и защитаваме вашата лична информация.",
+          "Kitanski зачита вашата поверителност. Тази политика описва как събираме, използваме и защитаваме вашата лична информация.",
         section1Title: "1. Информация, която събираме",
         section1Text:
           "Събираме само информацията, която доброволно предоставяте чрез контактната форма: име, имейл адрес, телефонен номер и съобщение.",
@@ -218,7 +218,7 @@ const KitanSkyWebsite = () => {
         privacy: "Privacy",
       },
       hero: {
-        title: "KitanSky",
+        title: "Kitanski",
         subtitle: "Project & Property Management",
         experience: "8+ years experience",
         projects: "15+ projects",
@@ -289,7 +289,7 @@ const KitanSkyWebsite = () => {
         messagePlaceholder: "Tell me about your project...",
       },
       footer: {
-        rights: "© 2024 KitanSky Project Management. All rights reserved.",
+        rights: "© 2024 Kitanski Project Management. All rights reserved.",
         tagline: "Developed with ❤️ for the construction industry",
         privacy: "Privacy Policy",
       },
@@ -305,7 +305,7 @@ const KitanSkyWebsite = () => {
         title: "Privacy Policy",
         lastUpdated: "Last updated: November 19, 2024",
         intro:
-          "KitanSky respects your privacy. This policy describes how we collect, use, and protect your personal information.",
+          "Kitanski respects your privacy. This policy describes how we collect, use, and protect your personal information.",
         section1Title: "1. Information We Collect",
         section1Text:
           "We only collect information you voluntarily provide through the contact form: name, email address, phone number, and message.",
@@ -365,7 +365,7 @@ const KitanSkyWebsite = () => {
       language === "bg"
         ? {
             title:
-              "KitanSky - Project Management София | Строителство & Ремонт",
+              "Kitanski - Project Management София | Строителство & Ремонт",
             description:
               "Професионално управление на строителни проекти в София. Жилищно строителство, ремонтни дейности, обзавеждане, технически надзор. 8+ години опит. ☎ +359 878 34 94 53",
             keywords:
@@ -373,7 +373,7 @@ const KitanSkyWebsite = () => {
           }
         : {
             title:
-              "KitanSky - Project Management Sofia | Construction & Renovation",
+              "Kitanski - Project Management Sofia | Construction & Renovation",
             description:
               "Professional construction project management in Sofia. Residential construction, renovation, interior design, technical supervision. 8+ years of experience. ☎ +359 878 34 94 53",
             keywords:
@@ -420,7 +420,7 @@ const KitanSkyWebsite = () => {
     const structuredData = {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      name: "KitanSky Project Management",
+      name: "Kitanski Project Management",
       description: metaTags.description,
       url: "https://kitansky.com",
       telephone: "+359878349453",
@@ -729,7 +729,7 @@ const KitanSkyWebsite = () => {
           <div className="flex justify-between items-center h-20">
             <div className="flex-shrink-0">
               <h1 className="text-3xl font-bold bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
-                KitanSky
+                Kitanski
               </h1>
             </div>
 
@@ -1508,4 +1508,4 @@ const KitanSkyWebsite = () => {
   );
 };
 
-export default KitanSkyWebsite;
+export default KitanskiWebsite;
