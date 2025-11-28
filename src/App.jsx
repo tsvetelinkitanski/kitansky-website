@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { translations } from './constants/translations';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import ContactForm from './components/ContactForm';
-import Footer from './components/Footer';
 import CookieConsent from './components/CookieConsent';
+import LoadingSpinner from './components/LoadingSpinner';
+
+const About = lazy(() => import('./components/About'));
+const Services = lazy(() => import('./components/Services'));
+const Projects = lazy(() => import('./components/Projects'));
+const ContactForm = lazy(() => import('./components/ContactForm'));
+const Footer = lazy(() => import('./components/Footer'));
 
 const KitanskiWebsite = () => {
   const [language, setLanguage] = useState('bg');
@@ -188,15 +190,25 @@ const KitanskiWebsite = () => {
 
       <Hero translations={translations} language={language} />
 
-      <About translations={translations} language={language} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <About translations={translations} language={language} />
+      </Suspense>
 
-      <Services translations={translations} language={language} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Services translations={translations} language={language} />
+      </Suspense>
 
-      <Projects translations={translations} language={language} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Projects translations={translations} language={language} />
+      </Suspense>
 
-      <ContactForm translations={translations} language={language} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <ContactForm translations={translations} language={language} />
+      </Suspense>
 
-      <Footer translations={translations} language={language} />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Footer translations={translations} language={language} />
+      </Suspense>
 
       <style jsx>{`
         @keyframes fade-in-up {
