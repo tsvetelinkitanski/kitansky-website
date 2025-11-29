@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const ContactForm = ({ translations, language }) => {
   const t = translations[language];
+  const recaptchaRef = useRef(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +14,7 @@ const ContactForm = ({ translations, language }) => {
   });
   const [formStatus, setFormStatus] = useState('');
   const [formErrors, setFormErrors] = useState({});
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
 
   // Load saved form data on mount
   useEffect(() => {
@@ -107,6 +110,17 @@ const ContactForm = ({ translations, language }) => {
       return;
     }
 
+    // Validate reCAPTCHA
+    if (!recaptchaToken) {
+      setFormErrors({
+        ...formErrors,
+        recaptcha: language === 'bg'
+          ? 'Моля, потвърдете че не сте робот'
+          : 'Please verify that you are not a robot'
+      });
+      return;
+    }
+
     setFormStatus('sending');
 
     try {
@@ -127,8 +141,13 @@ const ContactForm = ({ translations, language }) => {
 
       setFormStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
+      setRecaptchaToken(null);
       // Clear saved form data after successful submission
       localStorage.removeItem('contactFormData');
+      // Reset reCAPTCHA
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
 
       setTimeout(() => setFormStatus(''), 5000);
     } catch (error) {
@@ -306,6 +325,25 @@ const ContactForm = ({ translations, language }) => {
                 />
                 {formErrors.message && (
                   <p className="mt-1 text-sm text-red-600">{formErrors.message}</p>
+                )}
+              </div>
+
+              {/* reCAPTCHA */}
+              <div className="flex flex-col items-center">
+                <ReCAPTCHA
+                  ref={recaptchaRef}
+                  sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+                  onChange={(token) => {
+                    setRecaptchaToken(token);
+                    if (formErrors.recaptcha) {
+                      setFormErrors((prev) => ({ ...prev, recaptcha: '' }));
+                    }
+                  }}
+                  onExpired={() => setRecaptchaToken(null)}
+                  theme="light"
+                />
+                {formErrors.recaptcha && (
+                  <p className="mt-2 text-sm text-red-600">{formErrors.recaptcha}</p>
                 )}
               </div>
 
