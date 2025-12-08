@@ -23,11 +23,12 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
 
           <div className="hidden md:flex items-center space-x-8">
             {Object.values(t.nav).map((item, index) => {
-              if (index === 6) {
+              if (index === 4) {
+                // FAQ link
                 return (
                   <a
                     key={item}
-                    href="/blog.html"
+                    href="/faq.html"
                     className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
                   >
                     {item}
@@ -35,11 +36,12 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   </a>
                 );
               }
-              if (index === 7) {
+              if (index === 6) {
+                // Blog link
                 return (
                   <a
                     key={item}
-                    href="/privacy.html"
+                    href="/blog.html"
                     className="text-slate-700 hover:text-stone-700 transition-all duration-300 font-medium relative group"
                   >
                     {item}
@@ -52,7 +54,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   key={item}
                   onClick={() => {
                     scrollToSection(
-                      ['home', 'about', 'projects', 'services', 'faq', 'contact'][
+                      ['home', 'about', 'projects', 'services', null, 'contact', null][
                         index
                       ]
                     );
@@ -96,22 +98,24 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
         <div className="md:hidden bg-white border-t border-stone-200">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {Object.values(t.nav).map((item, index) => {
-              if (index === 6) {
+              if (index === 4) {
+                // FAQ link
                 return (
                   <a
                     key={item}
-                    href="/blog.html"
+                    href="/faq.html"
                     className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
                   >
                     {item}
                   </a>
                 );
               }
-              if (index === 7) {
+              if (index === 6) {
+                // Blog link
                 return (
                   <a
                     key={item}
-                    href="/privacy.html"
+                    href="/blog.html"
                     className="block w-full text-left px-3 py-2 text-slate-700 hover:text-stone-700 hover:bg-stone-50 rounded-md transition-colors"
                   >
                     {item}
@@ -123,7 +127,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   key={item}
                   onClick={() => {
                     scrollToSection(
-                      ['home', 'about', 'projects', 'services', 'faq', 'contact'][
+                      ['home', 'about', 'projects', 'services', null, 'contact', null][
                         index
                       ]
                     );

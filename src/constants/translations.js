@@ -8,7 +8,6 @@ export const translations = {
       faq: "Въпроси",
       contact: "Контакти",
       blog: "Блог",
-      privacy: "Поверителност",
     },
     hero: {
       title: "Kitanski",
@@ -187,7 +186,6 @@ export const translations = {
       faq: "FAQ",
       contact: "Contact",
       blog: "Blog",
-      privacy: "Privacy",
     },
     hero: {
       title: "Kitanski",

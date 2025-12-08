@@ -1968,6 +1968,26 @@
     }
 
     langToggle.addEventListener('click', () => {
+      // Check if there's an active article before switching language
+      const activeArticle = document.querySelector('.article-full.active');
+      let articleNumber = null;
+
+      if (activeArticle) {
+        // Extract article number (e.g., "bg-article-3" -> "3")
+        const match = activeArticle.id.match(/article-(\d+)$/);
+        if (match) {
+          articleNumber = match[1];
+        }
+      }
+
+      // Hide all current articles
+      document.querySelectorAll('.article-full').forEach(article => {
+        article.classList.remove('active');
+      });
+      document.querySelectorAll('[id$="-list-view"]').forEach(view => {
+        view.style.display = '';
+      });
+
       if (currentLang === 'bg') {
         currentLang = 'en';
         langText.textContent = 'BG';
@@ -1978,6 +1998,11 @@
         document.title = 'Blog - Expert Articles on Project Management | Kitanski';
         document.documentElement.lang = 'en';
         localStorage.setItem('language', 'en');
+
+        // If there was an active article, show the corresponding English article
+        if (articleNumber) {
+          showArticle('en-article-' + articleNumber);
+        }
       } else {
         currentLang = 'bg';
         langText.textContent = 'EN';
@@ -1988,15 +2013,12 @@
         document.title = 'Блог - Експертни статии за Project Management | Kitanski';
         document.documentElement.lang = 'bg';
         localStorage.setItem('language', 'bg');
-      }
 
-      // Hide all articles when switching language
-      document.querySelectorAll('.article-full').forEach(article => {
-        article.classList.remove('active');
-      });
-      document.querySelectorAll('[id$="-list-view"]').forEach(view => {
-        view.style.display = '';
-      });
+        // If there was an active article, show the corresponding Bulgarian article
+        if (articleNumber) {
+          showArticle('bg-article-' + articleNumber);
+        }
+      }
     });
 
     function showArticle(articleId) {
