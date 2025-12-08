@@ -6,3 +6,5 @@ dist
 .vercel
 public/projects/videos/*.mp4
 *.zip
+
+.env.production

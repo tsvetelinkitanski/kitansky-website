@@ -15,30 +15,16 @@ const ContactForm = ({ translations, language }) => {
   const [formStatus, setFormStatus] = useState('');
   const [formErrors, setFormErrors] = useState({});
   const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [lastSubmissionTime, setLastSubmissionTime] = useState(null);
 
-  // Load saved form data on mount
-  useEffect(() => {
-    const savedData = localStorage.getItem('contactFormData');
-    if (savedData) {
-      try {
-        const parsed = JSON.parse(savedData);
-        setFormData(parsed);
-      } catch (e) {
-        console.error('Error loading saved form data:', e);
-      }
-    }
-  }, []);
+  // NOTE: Auto-save removed for GDPR compliance - no storing PII without explicit consent
 
-  // Auto-save form data to localStorage
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (formData.name || formData.email || formData.phone || formData.message) {
-        localStorage.setItem('contactFormData', JSON.stringify(formData));
-      }
-    }, 500); // Debounce for 500ms
-
-    return () => clearTimeout(timeoutId);
-  }, [formData]);
+  // Sanitize input to prevent email injection attacks
+  const sanitizeInput = (input) => {
+    if (typeof input !== 'string') return '';
+    // Remove newlines, carriage returns, and other control characters that could be used for injection
+    return input.replace(/[\r\n\0]/g, '').trim();
+  };
 
   const validateEmail = (email) => {
     const parts = email.split('@');
@@ -110,6 +96,22 @@ const ContactForm = ({ translations, language }) => {
       return;
     }
 
+    // Rate limiting: 1 submission per 60 seconds
+    if (lastSubmissionTime) {
+      const timeSinceLastSubmission = Date.now() - lastSubmissionTime;
+      const remainingTime = Math.ceil((60000 - timeSinceLastSubmission) / 1000);
+
+      if (timeSinceLastSubmission < 60000) {
+        setFormErrors({
+          ...formErrors,
+          submit: language === 'bg'
+            ? `Моля изчакайте ${remainingTime} секунди преди да изпратите отново`
+            : `Please wait ${remainingTime} seconds before submitting again`
+        });
+        return;
+      }
+    }
+
     // Validate reCAPTCHA
     if (!recaptchaToken) {
       setFormErrors({
@@ -124,12 +126,13 @@ const ContactForm = ({ translations, language }) => {
     setFormStatus('sending');
 
     try {
+      // Sanitize all inputs to prevent email injection attacks
       const templateParams = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone || 'Not specified',
-        message: formData.message,
-        reply_to: formData.email,
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        phone: sanitizeInput(formData.phone) || 'Not specified',
+        message: sanitizeInput(formData.message),
+        reply_to: sanitizeInput(formData.email),
       };
 
       await emailjs.send(
@@ -139,11 +142,12 @@ const ContactForm = ({ translations, language }) => {
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
+      // NOTE: Message history storage removed for GDPR compliance - no storing customer PII
+
       setFormStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
       setRecaptchaToken(null);
-      // Clear saved form data after successful submission
-      localStorage.removeItem('contactFormData');
+      setLastSubmissionTime(Date.now()); // Record submission time for rate limiting
       // Reset reCAPTCHA
       if (recaptchaRef.current) {
         recaptchaRef.current.reset();
@@ -151,9 +155,47 @@ const ContactForm = ({ translations, language }) => {
 
       setTimeout(() => setFormStatus(''), 5000);
     } catch (error) {
-      console.error('EmailJS Error:', error);
-      setFormStatus('error');
-      setTimeout(() => setFormStatus(''), 5000);
+      if (import.meta.env.DEV) {
+        console.error('EmailJS Error:', error);
+      }
+
+      // Detailed error messages based on error type
+      let errorMessage = '';
+
+      if (error.text) {
+        // EmailJS specific errors
+        if (error.text.includes('Invalid') || error.status === 400) {
+          errorMessage = language === 'bg'
+            ? 'Невалидни данни във формата. Моля проверете полетата.'
+            : 'Invalid form data. Please check your entries.';
+        } else if (error.status === 403 || error.text.includes('forbidden')) {
+          errorMessage = language === 'bg'
+            ? 'Услугата е временно недостъпна. Опитайте по-късно.'
+            : 'Service temporarily unavailable. Try again later.';
+        } else if (error.status === 429 || error.text.includes('limit')) {
+          errorMessage = language === 'bg'
+            ? 'Твърде много опити. Моля изчакайте и опитайте отново.'
+            : 'Too many requests. Please wait before trying again.';
+        } else {
+          errorMessage = language === 'bg'
+            ? 'Грешка при изпращане. Моля опитайте отново.'
+            : 'Failed to send message. Please try again.';
+        }
+      } else if (error.message === 'Network request failed' || !navigator.onLine) {
+        errorMessage = language === 'bg'
+          ? 'Няма интернет връзка. Проверете свързаността си.'
+          : 'No internet connection. Check your connectivity.';
+      } else {
+        errorMessage = language === 'bg'
+          ? 'Неочаквана грешка. Моля опитайте отново или се свържете директно.'
+          : 'Unexpected error. Please try again or contact us directly.';
+      }
+
+      setFormErrors({
+        ...formErrors,
+        submit: errorMessage
+      });
+      setFormStatus('');
     }
   };
 
@@ -328,8 +370,31 @@ const ContactForm = ({ translations, language }) => {
                 )}
               </div>
 
-              {/* reCAPTCHA */}
+              {/* reCAPTCHA with GDPR disclosure */}
               <div className="flex flex-col items-center">
+                <p className="text-xs text-slate-500 mb-3 text-center max-w-md">
+                  {language === 'bg'
+                    ? 'Тази форма е защитена от reCAPTCHA. Приложима е '
+                    : 'This form is protected by reCAPTCHA. The Google '}
+                  <a
+                    href="https://policies.google.com/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-stone-700 underline hover:text-stone-900"
+                  >
+                    {language === 'bg' ? 'Политиката за поверителност' : 'Privacy Policy'}
+                  </a>
+                  {language === 'bg' ? ' и ' : ' and '}
+                  <a
+                    href="https://policies.google.com/terms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-stone-700 underline hover:text-stone-900"
+                  >
+                    {language === 'bg' ? 'Условията за ползване на Google' : 'Terms of Service'}
+                  </a>
+                  {language === 'bg' ? ' на Google.' : ' apply.'}
+                </p>
                 <ReCAPTCHA
                   ref={recaptchaRef}
                   sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
@@ -347,6 +412,12 @@ const ContactForm = ({ translations, language }) => {
                 )}
               </div>
 
+              {formErrors.submit && (
+                <div className="bg-orange-100 border-2 border-orange-500 text-orange-700 px-6 py-4 rounded-2xl font-semibold text-center">
+                  ⏱ {formErrors.submit}
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={formStatus === 'sending'}
@@ -360,12 +431,6 @@ const ContactForm = ({ translations, language }) => {
               {formStatus === 'success' && (
                 <div className="bg-green-100 border-2 border-green-500 text-green-700 px-6 py-4 rounded-2xl font-semibold">
                   ✓ {t.contact.successMessage}
-                </div>
-              )}
-
-              {formStatus === 'error' && (
-                <div className="bg-red-100 border-2 border-red-500 text-red-700 px-6 py-4 rounded-2xl font-semibold">
-                  ✗ {t.contact.errorMessage}
                 </div>
               )}
             </form>

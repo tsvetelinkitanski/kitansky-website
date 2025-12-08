@@ -5,6 +5,7 @@ export const translations = {
       about: "За мен",
       projects: "Проекти",
       services: "Услуги",
+      faq: "Въпроси",
       contact: "Контакти",
       blog: "Блог",
       privacy: "Поверителност",
@@ -85,6 +86,36 @@ export const translations = {
       tagline: "Разработено за строителната индустрия",
       privacy: "Политика за поверителност",
     },
+    faq: {
+      title: "Често задавани въпроси",
+      subtitle: "Отговори на най-честите въпроси относно строителни проекти и услуги",
+      items: [
+        {
+          question: "Какво точно прави Project Manager в строителството?",
+          answer: "Project Manager управлява целия строителен проект от началото до края - планиране на бюджет и график, координация на екипи и подизпълнители, комуникация с клиенти, технически надзор, контрол на качеството и решаване на проблеми. Аз съм отговорен за това проектът да бъде завършен навреме, в рамките на бюджета и с високо качество."
+        },
+        {
+          question: "Каква е разликата между Project Manager и технически ръководител?",
+          answer: "Project Manager управлява цялостната стратегия, бюджет, комуникация с клиенти и координация на проекта. Техническият ръководител е на обекта всеки ден, координирайки работниците, проверявайки качеството на изпълнение и следейки за правилното изпълнение на проекта. Двете роли са комплементарни - аз имам опит и в двете позиции."
+        },
+        {
+          question: "Колко струват вашите услуги?",
+          answer: "Цените варират в зависимост от обема и сложността на проекта. Предлагам безплатна първоначална консултация, при която обсъждаме вашия проект и правя индивидуална оферта. Свържете се с мен на +359 878 34 94 53 или kitanskitsvetelin@gmail.com."
+        },
+        {
+          question: "Работите ли само в София или и в други градове?",
+          answer: "Основно работя в София и областта, където имам установени екипи и подизпълнители. За проекти извън София моля свържете се с мен, за да обсъдим възможностите."
+        },
+        {
+          question: "Колко време отнема един строителен проект?",
+          answer: "Времето зависи от вида и мащаба на проекта. Ремонт на апартамент обикновено отнема 2-4 месеца. Ново строителство на къща - 8-12 месеца. След оглед мога да дам по-точна оценка на сроковете."
+        },
+        {
+          question: "Предлагате ли технически надзор без пълно project management?",
+          answer: "Да, предлагам и самостоятелна услуга технически надзор за клиенти, които искат професионален контрол на качеството и изпълнението, но вече имат организиран проект."
+        }
+      ]
+    },
     cookies: {
       title: "Бисквитки",
       message:
@@ -153,6 +184,7 @@ export const translations = {
       about: "About",
       projects: "Projects",
       services: "Services",
+      faq: "FAQ",
       contact: "Contact",
       blog: "Blog",
       privacy: "Privacy",
@@ -174,7 +206,7 @@ export const translations = {
       intro:
         "Project Manager with solid experience in the construction industry.",
       career:
-        "I started my career as a construction worker, progressed through the position of technical manager, and today I manage complete construction projects from start to finish.",
+        "I started my career as a construction worker, progressed through the position of technical supervisor, and today I manage complete construction projects from start to finish.",
       vision:
         "My vision is to create quality projects that combine functionality, aesthetics and sustainability, while always meeting deadlines and budgets.",
       experienceTitle: "Experience",
@@ -232,6 +264,36 @@ export const translations = {
       rights: "© 2024 Kitanski Project Management. All rights reserved.",
       tagline: "Developed with ❤️ for the construction industry",
       privacy: "Privacy Policy",
+    },
+    faq: {
+      title: "Frequently Asked Questions",
+      subtitle: "Answers to the most common questions about construction projects and services",
+      items: [
+        {
+          question: "What exactly does a Project Manager do in construction?",
+          answer: "A Project Manager manages the entire construction project from start to finish - budget and schedule planning, team and subcontractor coordination, client communication, technical supervision, quality control, and problem-solving. I'm responsible for ensuring the project is completed on time, within budget, and with high quality."
+        },
+        {
+          question: "What's the difference between a Project Manager and a technical supervisor?",
+          answer: "The Project Manager handles overall strategy, budget, client communication, and project coordination. The technical supervisor is on site every day, coordinating workers, checking execution quality, and ensuring proper project implementation. Both roles are complementary - I have experience in both positions."
+        },
+        {
+          question: "How much do your services cost?",
+          answer: "Prices vary depending on project scope and complexity. I offer a free initial consultation where we discuss your project and I provide a custom quote. Contact me at +359 878 34 94 53 or kitanskitsvetelin@gmail.com."
+        },
+        {
+          question: "Do you work only in Sofia or in other cities too?",
+          answer: "I primarily work in Sofia and the surrounding area, where I have established teams and subcontractors. For projects outside Sofia, please contact me to discuss possibilities."
+        },
+        {
+          question: "How long does a construction project take?",
+          answer: "The timeline depends on project type and scale. Apartment renovations typically take 2-4 months. New house construction takes 8-12 months. After a site visit, I can provide a more accurate timeline estimate."
+        },
+        {
+          question: "Do you offer technical supervision without full project management?",
+          answer: "Yes, I offer standalone technical supervision services for clients who want professional quality and execution control but already have an organized project."
+        }
+      ]
     },
     cookies: {
       title: "Cookies",

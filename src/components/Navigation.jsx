@@ -23,7 +23,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
 
           <div className="hidden md:flex items-center space-x-8">
             {Object.values(t.nav).map((item, index) => {
-              if (index === 5) {
+              if (index === 6) {
                 return (
                   <a
                     key={item}
@@ -35,7 +35,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   </a>
                 );
               }
-              if (index === 6) {
+              if (index === 7) {
                 return (
                   <a
                     key={item}
@@ -52,7 +52,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   key={item}
                   onClick={() => {
                     scrollToSection(
-                      ['home', 'about', 'projects', 'services', 'contact'][
+                      ['home', 'about', 'projects', 'services', 'faq', 'contact'][
                         index
                       ]
                     );
@@ -96,7 +96,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
         <div className="md:hidden bg-white border-t border-stone-200">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {Object.values(t.nav).map((item, index) => {
-              if (index === 5) {
+              if (index === 6) {
                 return (
                   <a
                     key={item}
@@ -107,7 +107,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   </a>
                 );
               }
-              if (index === 6) {
+              if (index === 7) {
                 return (
                   <a
                     key={item}
@@ -123,7 +123,7 @@ const Navigation = ({ language, toggleLanguage, translations }) => {
                   key={item}
                   onClick={() => {
                     scrollToSection(
-                      ['home', 'about', 'projects', 'services', 'contact'][
+                      ['home', 'about', 'projects', 'services', 'faq', 'contact'][
                         index
                       ]
                     );

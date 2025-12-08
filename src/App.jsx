@@ -8,6 +8,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 const About = lazy(() => import('./components/About'));
 const Services = lazy(() => import('./components/Services'));
 const Projects = lazy(() => import('./components/Projects'));
+const FAQ = lazy(() => import('./components/FAQ'));
 const ContactForm = lazy(() => import('./components/ContactForm'));
 const Footer = lazy(() => import('./components/Footer'));
 
@@ -26,6 +27,39 @@ const KitanskiWebsite = () => {
       setLanguage(savedLanguage);
     }
   }, []);
+
+  // Load Google Analytics only after user consent (GDPR compliance)
+  useEffect(() => {
+    if (cookieConsent === true) {
+      const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+
+      if (!GA_MEASUREMENT_ID) {
+        if (import.meta.env.DEV) {
+          console.warn('Google Analytics ID not configured');
+        }
+        return;
+      }
+
+      // Initialize gtag
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+
+      // Load GA script
+      const script = document.createElement('script');
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+      script.async = true;
+      document.head.appendChild(script);
+
+      // Configure GA
+      script.onload = () => {
+        gtag('js', new Date());
+        gtag('config', GA_MEASUREMENT_ID);
+      };
+    }
+  }, [cookieConsent]);
 
   const acceptCookies = () => {
     localStorage.setItem('cookieConsent', 'accepted');
@@ -149,6 +183,7 @@ const KitanskiWebsite = () => {
     scriptTag.textContent = JSON.stringify(structuredData);
   }, [language]);
 
+  // Scroll animations - optimized observer for lazy-loaded components
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -161,33 +196,29 @@ const KitanskiWebsite = () => {
       { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
     );
 
-    // Use MutationObserver to watch for new elements being added
-    const mutationObserver = new MutationObserver(() => {
+    // Track observed elements to avoid duplicates
+    const observedElements = new Set();
+
+    const observeElements = () => {
       const elements = document.querySelectorAll('.scroll-animate');
       elements.forEach((el) => {
-        if (!el.classList.contains('observed')) {
-          el.classList.add('observed');
+        if (!observedElements.has(el)) {
           observer.observe(el);
+          observedElements.add(el);
         }
       });
-    });
+    };
 
-    // Start observing the document for changes
-    mutationObserver.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    // Initial observation
+    observeElements();
 
-    // Observe initial elements
-    const elements = document.querySelectorAll('.scroll-animate');
-    elements.forEach((el) => {
-      el.classList.add('observed');
-      observer.observe(el);
-    });
+    // Re-observe periodically for lazy-loaded components (lighter than MutationObserver)
+    const intervals = [100, 300, 600, 1000, 2000]; // Multiple checks as components load
+    const timeouts = intervals.map(delay => setTimeout(observeElements, delay));
 
     return () => {
+      timeouts.forEach(t => clearTimeout(t));
       observer.disconnect();
-      mutationObserver.disconnect();
     };
   }, []);
 
@@ -214,23 +245,27 @@ const KitanskiWebsite = () => {
 
       <Hero translations={translations} language={language} />
 
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner language={language} />}>
         <About translations={translations} language={language} />
       </Suspense>
 
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner language={language} />}>
         <Services translations={translations} language={language} />
       </Suspense>
 
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner language={language} />}>
         <Projects translations={translations} language={language} />
       </Suspense>
 
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner language={language} />}>
+        <FAQ translations={translations} language={language} />
+      </Suspense>
+
+      <Suspense fallback={<LoadingSpinner language={language} />}>
         <ContactForm translations={translations} language={language} />
       </Suspense>
 
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense fallback={<LoadingSpinner language={language} />}>
         <Footer translations={translations} language={language} />
       </Suspense>
 

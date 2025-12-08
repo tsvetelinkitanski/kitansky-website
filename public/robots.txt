@@ -5,5 +5,4 @@ Allow: /
 # Sitemap
 Sitemap: https://kitansky.com/sitemap.xml
 
-# Crawl-delay
-Crawl-delay: 1
+# No crawl-delay for faster indexing

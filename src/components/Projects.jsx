@@ -154,7 +154,16 @@ const Projects = ({ translations, language }) => {
               <div
                 key={project.id}
                 onClick={() => openGallery(project, 0)}
-                className="scroll-animate scale-fade-in group bg-gradient-to-br from-white to-stone-50/30 rounded-3xl overflow-hidden border-2 border-stone-100 hover:border-stone-300 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openGallery(project, 0);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-label={`${project.title} - ${language === 'bg' ? 'Отвори галерия' : 'Open gallery'}`}
+                className="scroll-animate scale-fade-in group bg-gradient-to-br from-white to-stone-50/30 rounded-3xl overflow-hidden border-2 border-stone-100 hover:border-stone-300 focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="relative h-72 overflow-hidden">
@@ -212,6 +221,7 @@ const Projects = ({ translations, language }) => {
           <button
             onClick={closeGallery}
             className="absolute top-6 right-6 z-50 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-4 rounded-full transition-all"
+            aria-label={language === 'bg' ? 'Затвори галерия' : 'Close gallery'}
           >
             <X size={32} className="text-white" />
           </button>
@@ -223,6 +233,7 @@ const Projects = ({ translations, language }) => {
                 prevMedia();
               }}
               className="absolute left-6 z-50 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-4 rounded-full transition-all"
+              aria-label={language === 'bg' ? 'Предишна снимка' : 'Previous image'}
             >
               <ChevronLeft size={32} className="text-white" />
             </button>
@@ -235,6 +246,7 @@ const Projects = ({ translations, language }) => {
                 nextMedia();
               }}
               className="absolute right-6 z-50 bg-white/10 hover:bg-white/20 backdrop-blur-sm p-4 rounded-full transition-all"
+              aria-label={language === 'bg' ? 'Следваща снимка' : 'Next image'}
             >
               <ChevronRight size={32} className="text-white" />
             </button>
@@ -269,6 +281,12 @@ const Projects = ({ translations, language }) => {
                           ? 'bg-white w-8'
                           : 'bg-white/40 hover:bg-white/60'
                       }`}
+                      aria-label={
+                        language === 'bg'
+                          ? `Покажи снимка ${index + 1}`
+                          : `Show image ${index + 1}`
+                      }
+                      aria-current={index === currentMediaIndex ? 'true' : 'false'}
                     />
                   ))}
                 </div>
