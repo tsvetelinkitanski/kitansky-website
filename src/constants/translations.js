@@ -68,7 +68,8 @@ export const translations = {
           name: "арх. Христо Иванов",
           company: "Инфинити пропърти ЕООД",
           role: "Архитект",
-          text: "Пътищата ни с г-н Китански (Цецо) се пресякоха при съвместната ни работа в строителна компания Инфинити. Това, което ми направи силно впечатление в него, още от първата ни среща, е отговорнотта, енергичността и позитивното отношение, с което подхожда към всеки проект. Не бих се поколебал да препоръчам уменията му на всеки архитект, строител, предприемач или човек изправил се пред трудностите по реализиране на своите проекти."
+          text: "Пътищата ни с г-н Китански (Цецо) се пресякоха при съвместната ни работа в строителна компания Инфинити. Това, което ми направи силно впечатление в него, още от първата ни среща, е отговорнотта, енергичността и позитивното отношение, с което подхожда към всеки проект. Не бих се поколебал да препоръчам уменията му на всеки архитект, строител, предприемач или човек изправил се пред трудностите по реализиране на своите проекти.",
+          linkedIn: "https://www.linkedin.com/in/hristo-ivanov-b109b8215/"
         }
       ]
     },
@@ -259,7 +260,8 @@ export const translations = {
           name: "Arch. Hristo Ivanov",
           company: "Infinity Property Ltd.",
           role: "Architect",
-          text: "My path crossed with Mr. Kitanski (Tsetso) during our collaborative work at Infinity construction company. What made a strong impression on me, from our very first meeting, was his responsibility, energy, and positive attitude with which he approaches every project. I would not hesitate to recommend his skills to any architect, builder, entrepreneur, or person facing difficulties in realizing their projects."
+          text: "My path crossed with Mr. Kitanski (Tsetso) during our collaborative work at Infinity construction company. What made a strong impression on me, from our very first meeting, was his responsibility, energy, and positive attitude with which he approaches every project. I would not hesitate to recommend his skills to any architect, builder, entrepreneur, or person facing difficulties in realizing their projects.",
+          linkedIn: "https://www.linkedin.com/in/hristo-ivanov-b109b8215/"
         }
       ]
     },

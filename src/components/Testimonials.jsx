@@ -1,4 +1,4 @@
-import { Quote } from 'lucide-react';
+import { Quote, Linkedin } from 'lucide-react';
 
 const Testimonials = ({ translations, language }) => {
   const t = translations[language];
@@ -47,6 +47,18 @@ const Testimonials = ({ translations, language }) => {
                     <p className="text-stone-500 text-sm mt-1">
                       {testimonial.company}
                     </p>
+                    {testimonial.linkedIn && (
+                      <a
+                        href={testimonial.linkedIn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 mt-3 text-blue-600 hover:text-blue-700 transition-colors"
+                        aria-label={`LinkedIn ${language === 'bg' ? 'профил на' : 'profile of'} ${testimonial.name}`}
+                      >
+                        <Linkedin className="w-5 h-5" />
+                        <span className="text-sm font-medium">LinkedIn</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
