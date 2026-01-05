@@ -60,6 +60,18 @@ export const translations = {
       disclaimer:
         "Изображенията са примерни илюстрации. Реалните снимки от завършените проекти не могат да бъдат публикувани онлайн поради авторски права и политики за поверителност на клиентите.",
     },
+    testimonials: {
+      title: "Препоръки",
+      subtitle: "Отзиви от клиенти и партньори",
+      items: [
+        {
+          name: "арх. Христо Иванов",
+          company: "Инфинити пропърти ЕООД",
+          role: "Архитект",
+          text: "Пътищата ни с г-н Китански (Цецо) се пресякоха при съвместната ни работа в строителна компания Инфинити. Това, което ми направи силно впечатление в него, още от първата ни среща, е отговорнотта, енергичността и позитивното отношение, с което подхожда към всеки проект. Не бих се поколебал да препоръчам уменията му на всеки архитект, строител, предприемач или човек изправил се пред трудностите по реализиране на своите проекти."
+        }
+      ]
+    },
     contact: {
       title: "Контакти",
       connectTitle: "Свържете се с мен",
@@ -238,6 +250,18 @@ export const translations = {
       media: "media",
       disclaimer:
         "Images are illustrative examples. Actual photos from completed projects cannot be published online due to copyright and client confidentiality policies.",
+    },
+    testimonials: {
+      title: "Testimonials",
+      subtitle: "Reviews from clients and partners",
+      items: [
+        {
+          name: "Arch. Hristo Ivanov",
+          company: "Infinity Property Ltd.",
+          role: "Architect",
+          text: "My path crossed with Mr. Kitanski (Tsetso) during our collaborative work at Infinity construction company. What made a strong impression on me, from our very first meeting, was his responsibility, energy, and positive attitude with which he approaches every project. I would not hesitate to recommend his skills to any architect, builder, entrepreneur, or person facing difficulties in realizing their projects."
+        }
+      ]
     },
     contact: {
       title: "Contact",

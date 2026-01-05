@@ -8,6 +8,7 @@ import LoadingSpinner from './components/LoadingSpinner';
 const About = lazy(() => import('./components/About'));
 const Services = lazy(() => import('./components/Services'));
 const Projects = lazy(() => import('./components/Projects'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
 const ContactForm = lazy(() => import('./components/ContactForm'));
 const Footer = lazy(() => import('./components/Footer'));
 
@@ -254,6 +255,10 @@ const KitanskiWebsite = () => {
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
         <Projects translations={translations} language={language} />
+      </Suspense>
+
+      <Suspense fallback={<LoadingSpinner language={language} />}>
+        <Testimonials translations={translations} language={language} />
       </Suspense>
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
