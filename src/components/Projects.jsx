@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Projects = ({ translations, language }) => {
@@ -11,40 +11,63 @@ const Projects = ({ translations, language }) => {
     setCurrentProject(project);
     setCurrentMediaIndex(mediaIndex);
     setGalleryOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
-  const closeGallery = () => {
+  const closeGallery = useCallback(() => {
     setGalleryOpen(false);
     setCurrentProject(null);
     setCurrentMediaIndex(0);
-    document.body.style.overflow = 'unset';
-  };
+  }, []);
 
-  const nextMedia = () => {
-    if (currentProject && currentMediaIndex < currentProject.media.length - 1) {
-      setCurrentMediaIndex(currentMediaIndex + 1);
+  // Manage body scroll when gallery opens/closes
+  useEffect(() => {
+    if (galleryOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
     }
-  };
+  }, [galleryOpen]);
 
-  const prevMedia = () => {
-    if (currentMediaIndex > 0) {
-      setCurrentMediaIndex(currentMediaIndex - 1);
-    }
-  };
+  const nextMedia = useCallback(() => {
+    setCurrentMediaIndex((prevIndex) => {
+      if (currentProject && prevIndex < currentProject.media.length - 1) {
+        return prevIndex + 1;
+      }
+      return prevIndex;
+    });
+  }, [currentProject]);
+
+  const prevMedia = useCallback(() => {
+    setCurrentMediaIndex((prevIndex) => {
+      if (prevIndex > 0) {
+        return prevIndex - 1;
+      }
+      return prevIndex;
+    });
+  }, []);
 
   useEffect(() => {
-    const handleKeyPress = (e) => {
-      if (!galleryOpen) return;
+    if (!galleryOpen) return;
 
-      if (e.key === 'Escape') closeGallery();
-      if (e.key === 'ArrowRight') nextMedia();
-      if (e.key === 'ArrowLeft') prevMedia();
+    const handleKeyPress = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeGallery();
+      }
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextMedia();
+      }
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevMedia();
+      }
     };
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [galleryOpen, currentMediaIndex, currentProject]);
+  }, [galleryOpen, closeGallery, nextMedia, prevMedia]);
 
   const projects = [
     {

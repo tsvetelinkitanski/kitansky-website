@@ -245,13 +245,36 @@ const KitanskiWebsite = () => {
     // Initial observation
     observeElements();
 
-    // Re-observe periodically for lazy-loaded components (lighter than MutationObserver)
-    const intervals = [100, 300, 600, 1000, 2000]; // Multiple checks as components load
-    const timeouts = intervals.map(delay => setTimeout(observeElements, delay));
+    // Use MutationObserver to detect new elements (more efficient than multiple timeouts)
+    const mutationObserver = new MutationObserver((mutations) => {
+      // Check if any new nodes with scroll-animate class were added
+      let hasNewElements = false;
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          if (node.nodeType === 1) { // Element node
+            if (node.classList?.contains('scroll-animate') ||
+                node.querySelector?.('.scroll-animate')) {
+              hasNewElements = true;
+            }
+          }
+        });
+      });
+
+      if (hasNewElements) {
+        observeElements();
+      }
+    });
+
+    // Observe DOM changes for lazy-loaded components
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
 
     return () => {
-      timeouts.forEach(t => clearTimeout(t));
       observer.disconnect();
+      mutationObserver.disconnect();
+      observedElements.clear(); // Clear the Set to prevent memory leaks
     };
   }, []);
 

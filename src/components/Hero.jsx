@@ -15,9 +15,17 @@ const Hero = ({ translations, language }) => {
     >
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=90"
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=80"
+          srcSet="
+            https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=640&h=360&fit=crop&q=75 640w,
+            https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1024&h=576&fit=crop&q=80 1024w,
+            https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&h=1080&fit=crop&q=80 1920w,
+            https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=2560&h=1440&fit=crop&q=85 2560w
+          "
+          sizes="100vw"
           alt="Luxury Building"
           loading="eager"
+          fetchpriority="high"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
