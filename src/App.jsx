@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import CookieConsent from './components/CookieConsent';
 import LoadingSpinner from './components/LoadingSpinner';
+import reportWebVitals from './utils/reportWebVitals';
 
 const About = lazy(() => import('./components/About'));
 const Services = lazy(() => import('./components/Services'));
@@ -15,6 +16,7 @@ const Footer = lazy(() => import('./components/Footer'));
 const KitanskiWebsite = () => {
   const [language, setLanguage] = useState('bg');
   const [cookieConsent, setCookieConsent] = useState(null);
+  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     const consent = localStorage.getItem('cookieConsent');
@@ -25,6 +27,22 @@ const KitanskiWebsite = () => {
     const savedLanguage = localStorage.getItem('language');
     if (savedLanguage && (savedLanguage === 'bg' || savedLanguage === 'en')) {
       setLanguage(savedLanguage);
+    }
+
+    // Load theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
+      setTheme(savedTheme);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        setTheme('dark');
+        document.documentElement.classList.add('dark');
+      }
     }
   }, []);
 
@@ -53,10 +71,13 @@ const KitanskiWebsite = () => {
       script.async = true;
       document.head.appendChild(script);
 
-      // Configure GA
+      // Configure GA and start Web Vitals tracking
       script.onload = () => {
         gtag('js', new Date());
         gtag('config', GA_MEASUREMENT_ID);
+
+        // Start tracking Web Vitals after GA is loaded
+        reportWebVitals();
       };
     }
   }, [cookieConsent]);
@@ -75,6 +96,18 @@ const KitanskiWebsite = () => {
     const newLanguage = language === 'bg' ? 'en' : 'bg';
     setLanguage(newLanguage);
     localStorage.setItem('language', newLanguage);
+  };
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   useEffect(() => {
@@ -223,10 +256,10 @@ const KitanskiWebsite = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-neutral-100 to-stone-100 text-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-stone-50 via-neutral-100 to-stone-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 text-slate-900 dark:text-slate-100 transition-colors duration-300">
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-stone-200/30 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-neutral-200/30 rounded-full blur-3xl animate-pulse delay-700"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-stone-200/30 dark:bg-slate-700/30 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-neutral-200/30 dark:bg-slate-700/30 rounded-full blur-3xl animate-pulse delay-700"></div>
       </div>
 
       <CookieConsent
@@ -240,10 +273,13 @@ const KitanskiWebsite = () => {
       <Navigation
         language={language}
         toggleLanguage={toggleLanguage}
+        theme={theme}
+        toggleTheme={toggleTheme}
         translations={translations}
       />
 
-      <Hero translations={translations} language={language} />
+      <main id="main-content">
+        <Hero translations={translations} language={language} />
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
         <About translations={translations} language={language} />
@@ -268,6 +304,7 @@ const KitanskiWebsite = () => {
       <Suspense fallback={<LoadingSpinner language={language} />}>
         <Footer translations={translations} language={language} />
       </Suspense>
+      </main>
 
       <style jsx>{`
         @keyframes fade-in-up {

@@ -8,6 +8,8 @@ export const translations = {
       faq: "Въпроси",
       contact: "Контакти",
       blog: "Блог",
+      darkMode: "Тъмна тема",
+      lightMode: "Светла тема",
     },
     hero: {
       title: "Kitanski",
@@ -135,6 +137,11 @@ export const translations = {
       accept: "Приемам",
       decline: "Отказвам",
       learnMore: "Научете повече",
+      manageCookies: "Настройки на бисквитките",
+      changePreferences: "Промяна на настройките",
+      currentStatus: "Текущ статус:",
+      accepted: "Приети",
+      declined: "Отказани",
     },
     privacy: {
       title: "Политика за поверителност",
@@ -199,6 +206,8 @@ export const translations = {
       faq: "FAQ",
       contact: "Contact",
       blog: "Blog",
+      darkMode: "Dark theme",
+      lightMode: "Light theme",
     },
     hero: {
       title: "Kitanski",
@@ -326,6 +335,11 @@ export const translations = {
       accept: "Accept",
       decline: "Decline",
       learnMore: "Learn more",
+      manageCookies: "Cookie Settings",
+      changePreferences: "Change Preferences",
+      currentStatus: "Current status:",
+      accepted: "Accepted",
+      declined: "Declined",
     },
     privacy: {
       title: "Privacy Policy",
