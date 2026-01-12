@@ -202,23 +202,23 @@ const ContactForm = ({ translations, language }) => {
   return (
     <section
       id="contact"
-      className="py-24 px-4 bg-gradient-to-br from-stone-50 to-neutral-50"
+      className="py-24 px-4 bg-gradient-to-br from-stone-50 to-neutral-50 dark:from-slate-900 dark:to-slate-800 transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
+        <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text text-transparent">
           {t.contact.title}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
-            <div className="bg-white p-10 rounded-3xl border-2 border-stone-200 shadow-xl">
-              <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text">
+            <div className="bg-white dark:bg-slate-800 p-10 rounded-3xl border-2 border-stone-200 dark:border-slate-700 shadow-xl transition-colors duration-300">
+              <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text">
                 {t.contact.connectTitle}
               </h3>
 
               <div className="space-y-6">
-                <div className="flex items-center gap-4 text-slate-700 hover:text-stone-700 transition-colors group">
-                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 p-3 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="flex items-center gap-4 text-slate-700 dark:text-slate-200 hover:text-stone-700 dark:hover:text-stone-300 transition-colors duration-300 group">
+                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 p-3 rounded-2xl group-hover:scale-110 transition-all duration-300">
                     <Mail className="text-white" size={24} />
                   </div>
                   <a
@@ -229,8 +229,8 @@ const ContactForm = ({ translations, language }) => {
                   </a>
                 </div>
 
-                <div className="flex items-center gap-4 text-slate-700 group">
-                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 p-3 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="flex items-center gap-4 text-slate-700 dark:text-slate-200 group transition-colors duration-300">
+                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 p-3 rounded-2xl group-hover:scale-110 transition-all duration-300">
                     <Phone className="text-white" size={24} />
                   </div>
                   <a href="tel:+359878349453" className="text-lg font-medium">
@@ -238,8 +238,8 @@ const ContactForm = ({ translations, language }) => {
                   </a>
                 </div>
 
-                <div className="flex items-center gap-4 text-slate-700 group">
-                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 p-3 rounded-2xl group-hover:scale-110 transition-transform">
+                <div className="flex items-center gap-4 text-slate-700 dark:text-slate-200 group transition-colors duration-300">
+                  <div className="bg-gradient-to-br from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 p-3 rounded-2xl group-hover:scale-110 transition-all duration-300">
                     <MapPin className="text-white" size={24} />
                   </div>
                   <span className="text-lg font-medium">
@@ -250,8 +250,8 @@ const ContactForm = ({ translations, language }) => {
                 </div>
               </div>
 
-              <div className="mt-10 pt-8 border-t-2 border-stone-100">
-                <p className="text-slate-700 mb-4 font-semibold">
+              <div className="mt-10 pt-8 border-t-2 border-stone-100 dark:border-slate-700 transition-colors duration-300">
+                <p className="text-slate-700 dark:text-slate-200 mb-4 font-semibold transition-colors duration-300">
                   {t.contact.followMe}
                 </p>
                 <div className="flex gap-4">
@@ -259,7 +259,7 @@ const ContactForm = ({ translations, language }) => {
                     href="https://www.linkedin.com/in/tsvetelin-kitanski-07819a183/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-gradient-to-br from-stone-600 to-neutral-700 hover:from-stone-700 hover:to-neutral-800 p-4 rounded-2xl transition-all transform hover:scale-110 shadow-lg"
+                    className="bg-gradient-to-br from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 hover:from-stone-700 hover:to-neutral-800 dark:hover:from-slate-600 dark:hover:to-slate-500 p-4 rounded-2xl transition-all duration-300 transform hover:scale-110 shadow-lg"
                     aria-label="LinkedIn"
                   >
                     <Linkedin size={24} className="text-white" />
@@ -269,8 +269,8 @@ const ContactForm = ({ translations, language }) => {
             </div>
           </div>
 
-          <div className="bg-white p-10 rounded-3xl border-2 border-stone-200 shadow-xl">
-            <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text">
+          <div className="bg-white dark:bg-slate-800 p-10 rounded-3xl border-2 border-stone-200 dark:border-slate-700 shadow-xl transition-colors duration-300">
+            <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text">
               {t.contact.sendTitle}
             </h3>
 
@@ -278,7 +278,7 @@ const ContactForm = ({ translations, language }) => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-bold text-slate-700 mb-2"
+                  className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 transition-colors duration-300"
                 >
                   {t.contact.name} *
                 </label>
@@ -291,18 +291,18 @@ const ContactForm = ({ translations, language }) => {
                   onChange={handleInputChange}
                   aria-label={t.contact.name}
                   aria-required="true"
-                  className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.name ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
+                  className={`w-full px-5 py-4 bg-stone-50/50 dark:bg-slate-700 border-2 ${formErrors.name ? 'border-red-500 dark:border-red-400' : 'border-stone-200 dark:border-slate-600'} rounded-2xl focus:ring-2 focus:ring-stone-500 dark:focus:ring-slate-400 focus:border-stone-500 dark:focus:border-slate-400 outline-none transition-all duration-300 text-slate-800 dark:text-white font-medium`}
                   placeholder={t.contact.namePlaceholder}
                 />
                 {formErrors.name && (
-                  <p className="mt-1 text-sm text-red-600">{formErrors.name}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.name}</p>
                 )}
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-bold text-slate-700 mb-2"
+                  className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 transition-colors duration-300"
                 >
                   {t.contact.email} *
                 </label>
@@ -315,18 +315,18 @@ const ContactForm = ({ translations, language }) => {
                   onChange={handleInputChange}
                   aria-label={t.contact.email}
                   aria-required="true"
-                  className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.email ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
+                  className={`w-full px-5 py-4 bg-stone-50/50 dark:bg-slate-700 border-2 ${formErrors.email ? 'border-red-500 dark:border-red-400' : 'border-stone-200 dark:border-slate-600'} rounded-2xl focus:ring-2 focus:ring-stone-500 dark:focus:ring-slate-400 focus:border-stone-500 dark:focus:border-slate-400 outline-none transition-all duration-300 text-slate-800 dark:text-white font-medium`}
                   placeholder={t.contact.emailPlaceholder}
                 />
                 {formErrors.email && (
-                  <p className="mt-1 text-sm text-red-600">{formErrors.email}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.email}</p>
                 )}
               </div>
 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-bold text-slate-700 mb-2"
+                  className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 transition-colors duration-300"
                 >
                   {t.contact.phone}
                 </label>
@@ -338,18 +338,18 @@ const ContactForm = ({ translations, language }) => {
                   onChange={handleInputChange}
                   inputMode="numeric"
                   aria-label={t.contact.phone}
-                  className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.phone ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium`}
+                  className={`w-full px-5 py-4 bg-stone-50/50 dark:bg-slate-700 border-2 ${formErrors.phone ? 'border-red-500 dark:border-red-400' : 'border-stone-200 dark:border-slate-600'} rounded-2xl focus:ring-2 focus:ring-stone-500 dark:focus:ring-slate-400 focus:border-stone-500 dark:focus:border-slate-400 outline-none transition-all duration-300 text-slate-800 dark:text-white font-medium`}
                   placeholder={t.contact.phonePlaceholder}
                 />
                 {formErrors.phone && (
-                  <p className="mt-1 text-sm text-red-600">{formErrors.phone}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.phone}</p>
                 )}
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-bold text-slate-700 mb-2"
+                  className="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2 transition-colors duration-300"
                 >
                   {t.contact.message} *
                 </label>
@@ -362,17 +362,17 @@ const ContactForm = ({ translations, language }) => {
                   rows="5"
                   aria-label={t.contact.message}
                   aria-required="true"
-                  className={`w-full px-5 py-4 bg-stone-50/50 border-2 ${formErrors.message ? 'border-red-500' : 'border-stone-200'} rounded-2xl focus:ring-2 focus:ring-stone-500 focus:border-stone-500 outline-none transition-all text-slate-800 font-medium resize-none`}
+                  className={`w-full px-5 py-4 bg-stone-50/50 dark:bg-slate-700 border-2 ${formErrors.message ? 'border-red-500 dark:border-red-400' : 'border-stone-200 dark:border-slate-600'} rounded-2xl focus:ring-2 focus:ring-stone-500 dark:focus:ring-slate-400 focus:border-stone-500 dark:focus:border-slate-400 outline-none transition-all duration-300 text-slate-800 dark:text-white font-medium resize-none`}
                   placeholder={t.contact.messagePlaceholder}
                 />
                 {formErrors.message && (
-                  <p className="mt-1 text-sm text-red-600">{formErrors.message}</p>
+                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{formErrors.message}</p>
                 )}
               </div>
 
               {/* reCAPTCHA with GDPR disclosure */}
               <div className="flex flex-col items-center">
-                <p className="text-xs text-slate-500 mb-3 text-center max-w-md">
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-3 text-center max-w-md transition-colors duration-300">
                   {language === 'bg'
                     ? 'Тази форма е защитена от reCAPTCHA. Приложима е '
                     : 'This form is protected by reCAPTCHA. The Google '}
@@ -380,7 +380,7 @@ const ContactForm = ({ translations, language }) => {
                     href="https://policies.google.com/privacy"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-stone-700 underline hover:text-stone-900"
+                    className="text-stone-700 dark:text-stone-300 underline hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-300"
                   >
                     {language === 'bg' ? 'Политиката за поверителност' : 'Privacy Policy'}
                   </a>
@@ -389,7 +389,7 @@ const ContactForm = ({ translations, language }) => {
                     href="https://policies.google.com/terms"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-stone-700 underline hover:text-stone-900"
+                    className="text-stone-700 dark:text-stone-300 underline hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-300"
                   >
                     {language === 'bg' ? 'Условията за ползване на Google' : 'Terms of Service'}
                   </a>
@@ -408,12 +408,12 @@ const ContactForm = ({ translations, language }) => {
                   theme="light"
                 />
                 {formErrors.recaptcha && (
-                  <p className="mt-2 text-sm text-red-600">{formErrors.recaptcha}</p>
+                  <p className="mt-2 text-sm text-red-600 dark:text-red-400">{formErrors.recaptcha}</p>
                 )}
               </div>
 
               {formErrors.submit && (
-                <div className="bg-orange-100 border-2 border-orange-500 text-orange-700 px-6 py-4 rounded-2xl font-semibold text-center">
+                <div className="bg-orange-100 dark:bg-orange-900/30 border-2 border-orange-500 dark:border-orange-600 text-orange-700 dark:text-orange-300 px-6 py-4 rounded-2xl font-semibold text-center transition-colors duration-300">
                   ⏱ {formErrors.submit}
                 </div>
               )}
@@ -421,7 +421,7 @@ const ContactForm = ({ translations, language }) => {
               <button
                 type="submit"
                 disabled={formStatus === 'sending'}
-                className="w-full px-10 py-5 bg-gradient-to-r from-stone-700 to-neutral-700 hover:from-stone-800 hover:to-neutral-800 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl shadow-stone-500/30 text-lg"
+                className="w-full px-10 py-5 bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-slate-700 dark:to-slate-600 hover:from-stone-800 hover:to-neutral-800 dark:hover:from-slate-600 dark:hover:to-slate-500 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed shadow-2xl shadow-stone-500/30 dark:shadow-slate-900/50 text-lg"
               >
                 {formStatus === 'sending'
                   ? t.contact.sending
@@ -429,7 +429,7 @@ const ContactForm = ({ translations, language }) => {
               </button>
 
               {formStatus === 'success' && (
-                <div className="bg-green-100 border-2 border-green-500 text-green-700 px-6 py-4 rounded-2xl font-semibold">
+                <div className="bg-green-100 dark:bg-green-900/30 border-2 border-green-500 dark:border-green-600 text-green-700 dark:text-green-300 px-6 py-4 rounded-2xl font-semibold transition-colors duration-300">
                   ✓ {t.contact.successMessage}
                 </div>
               )}

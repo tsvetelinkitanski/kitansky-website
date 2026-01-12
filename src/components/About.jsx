@@ -6,29 +6,29 @@ const About = ({ translations, language }) => {
   return (
     <section
       id="about"
-      className="py-24 px-4 bg-white relative overflow-hidden"
+      className="py-24 px-4 bg-white dark:bg-slate-900 relative overflow-hidden transition-colors duration-300"
     >
-      <div className="absolute top-0 left-0 w-64 h-64 bg-stone-100/60 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-neutral-100/60 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 left-0 w-64 h-64 bg-stone-100/60 dark:bg-slate-700/40 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-neutral-100/60 dark:bg-slate-700/40 rounded-full blur-3xl"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
+        <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text text-transparent">
           {t.about.title}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-white to-stone-50/50 p-10 rounded-3xl border border-stone-200/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-4xl font-black text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text mb-6">
+            <div className="bg-gradient-to-br from-white to-stone-50/50 dark:from-slate-800 dark:to-slate-800/50 p-10 rounded-3xl border border-stone-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+              <h3 className="text-4xl font-black text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text mb-6">
                 {t.about.name}
               </h3>
-              <p className="text-lg text-slate-700 leading-relaxed mb-4">
+              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
                 {t.about.intro}
               </p>
-              <p className="text-slate-600 leading-relaxed mb-4">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                 {t.about.career}
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
                 {t.about.vision}
               </p>
             </div>

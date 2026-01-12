@@ -137,14 +137,14 @@ const Projects = ({ translations, language }) => {
 
   return (
     <>
-      <section id="projects" className="py-24 px-4 bg-white">
+      <section id="projects" className="py-24 px-4 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-8 bg-gradient-to-r from-stone-700 to-neutral-700 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-8 bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text text-transparent">
             {t.projectsSection.title}
           </h2>
 
-          <div className="max-w-4xl mx-auto mb-12 bg-stone-50 border-l-4 border-stone-400 rounded-lg p-6">
-            <p className="text-slate-600 leading-relaxed text-sm">
+          <div className="max-w-4xl mx-auto mb-12 bg-stone-50 dark:bg-slate-800 border-l-4 border-stone-400 dark:border-slate-600 rounded-lg p-6 transition-colors duration-300">
+            <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm transition-colors duration-300">
               {t.projectsSection.disclaimer}
             </p>
           </div>
@@ -163,7 +163,7 @@ const Projects = ({ translations, language }) => {
                 role="button"
                 tabIndex={0}
                 aria-label={`${project.title} - ${language === 'bg' ? 'Отвори галерия' : 'Open gallery'}`}
-                className="scroll-animate scale-fade-in group bg-gradient-to-br from-white to-stone-50/30 rounded-3xl overflow-hidden border-2 border-stone-100 hover:border-stone-300 focus:border-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-500 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+                className="scroll-animate scale-fade-in group bg-gradient-to-br from-white to-stone-50/30 dark:from-slate-800 dark:to-slate-800/50 rounded-3xl overflow-hidden border-2 border-stone-100 dark:border-slate-700 hover:border-stone-300 dark:hover:border-slate-600 focus:border-stone-400 dark:focus:border-slate-500 focus:outline-none focus:ring-2 focus:ring-stone-500 dark:focus:ring-slate-400 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className="relative h-72 overflow-hidden">
@@ -174,36 +174,36 @@ const Projects = ({ translations, language }) => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute top-4 right-4 bg-gradient-to-r from-stone-600 to-neutral-700 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg">
+                  <div className="absolute top-4 right-4 bg-gradient-to-r from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg transition-colors duration-300">
                     {project.category}
                   </div>
                   {project.media && (
-                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2">
+                    <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm text-slate-800 dark:text-slate-100 px-4 py-2 rounded-full text-sm font-bold shadow-lg flex items-center gap-2 transition-colors duration-300">
                       📸 {project.media.length} {t.projectsSection.media}
                     </div>
                   )}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="bg-white/90 px-6 py-3 rounded-full font-bold text-slate-800 shadow-2xl">
+                    <div className="bg-white/90 dark:bg-slate-800/90 px-6 py-3 rounded-full font-bold text-slate-800 dark:text-slate-100 shadow-2xl transition-colors duration-300">
                       {t.projectsSection.viewGallery} →
                     </div>
                   </div>
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold mb-2 text-slate-800 group-hover:text-stone-700 transition-colors">
+                  <h3 className="text-2xl font-bold mb-2 text-slate-800 dark:text-slate-100 group-hover:text-stone-700 dark:group-hover:text-stone-300 transition-colors duration-300">
                     {project.title}
                   </h3>
                   {project.company && (
-                    <p className="text-stone-600 font-semibold mb-1">
+                    <p className="text-stone-600 dark:text-slate-300 font-semibold mb-1 transition-colors duration-300">
                       🏢 {project.company}
                     </p>
                   )}
-                  <p className="text-stone-600 mb-2">📍 {project.location}</p>
+                  <p className="text-stone-600 dark:text-slate-300 mb-2 transition-colors duration-300">📍 {project.location}</p>
                   {project.role && (
-                    <p className="text-stone-600 font-medium mb-3">
+                    <p className="text-stone-600 dark:text-slate-300 font-medium mb-3 transition-colors duration-300">
                       👔 {project.role}
                     </p>
                   )}
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-400 leading-relaxed transition-colors duration-300">
                     {project.description}
                   </p>
                 </div>

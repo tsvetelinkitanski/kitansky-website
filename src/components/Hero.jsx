@@ -37,13 +37,13 @@ const Hero = ({ translations, language }) => {
           </h3>
 
           <div className="flex flex-wrap gap-3 justify-center mb-8 animate-fade-in-up animation-delay-400">
-            <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
+            <span className="px-6 py-3 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-2 border-white/50 dark:border-slate-700/50 rounded-full text-sm font-bold text-slate-900 dark:text-slate-100 shadow-2xl hover:scale-105 transition-all hover:bg-white dark:hover:bg-slate-800">
               ✓ {t.hero.experience}
             </span>
-            <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
+            <span className="px-6 py-3 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-2 border-white/50 dark:border-slate-700/50 rounded-full text-sm font-bold text-slate-900 dark:text-slate-100 shadow-2xl hover:scale-105 transition-all hover:bg-white dark:hover:bg-slate-800">
               ✓ {t.hero.projects}
             </span>
-            <span className="px-6 py-3 bg-white/90 backdrop-blur-sm border-2 border-white/50 rounded-full text-sm font-bold text-slate-900 shadow-2xl hover:scale-105 transition-transform hover:bg-white">
+            <span className="px-6 py-3 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-2 border-white/50 dark:border-slate-700/50 rounded-full text-sm font-bold text-slate-900 dark:text-slate-100 shadow-2xl hover:scale-105 transition-all hover:bg-white dark:hover:bg-slate-800">
               ✓ {t.hero.quality}
             </span>
           </div>
