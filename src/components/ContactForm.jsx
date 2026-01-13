@@ -144,6 +144,16 @@ const ContactForm = ({ translations, language }) => {
 
       // NOTE: Message history storage removed for GDPR compliance - no storing customer PII
 
+      // Track conversion in Google Analytics 4 (which syncs to Google Ads)
+      if (window.gtag) {
+        window.gtag('event', 'close_convert_lead', {
+          event_category: 'Contact',
+          event_label: 'Contact Form Submission',
+          value: 100,
+          currency: 'BGN'
+        });
+      }
+
       setFormStatus('success');
       setFormData({ name: '', email: '', phone: '', message: '' });
       setRecaptchaToken(null);
@@ -233,7 +243,20 @@ const ContactForm = ({ translations, language }) => {
                   <div className="bg-gradient-to-br from-stone-600 to-neutral-700 dark:from-slate-700 dark:to-slate-600 p-3 rounded-2xl group-hover:scale-110 transition-all duration-300">
                     <Phone className="text-white" size={24} />
                   </div>
-                  <a href="tel:+359878349453" className="text-lg font-medium">
+                  <a
+                    href="tel:+359878349453"
+                    className="text-lg font-medium"
+                    onClick={() => {
+                      if (window.gtag) {
+                        window.gtag('event', 'qualify_lead', {
+                          event_category: 'Contact',
+                          event_label: 'Phone Call Click',
+                          value: 50,
+                          currency: 'BGN'
+                        });
+                      }
+                    }}
+                  >
                     +359 878 34 94 53
                   </a>
                 </div>
