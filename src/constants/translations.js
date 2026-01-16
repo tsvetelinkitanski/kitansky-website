@@ -21,6 +21,87 @@ export const translations = {
         "Професионално управление на строителни проекти с фокус върху качество, срокове и иновации",
       viewProjects: "Разгледай проекти",
       contactMe: "Свържи се с мен",
+      callNow: "Обади се сега",
+    },
+    whyKitanski: {
+      title: "ЗАЩО КИТАНСКИ?",
+      subtitle: "Конкретни причини да работите с мен",
+      reason1: {
+        title: "Нула забавяния",
+        description: "Завършени 15+ проекта в срок за последните 3 години. Строги графици и проактивно управление на рисковете.",
+      },
+      reason2: {
+        title: "Прозрачност",
+        description: "Седмични отчети и live достъп до прогреса на проекта. Винаги знаете къде са парите ви и какво се случва на обекта.",
+      },
+      reason3: {
+        title: "Проверени подизпълнители",
+        description: "Собствена мрежа от 30+ сертифицирани екипа. Не експериментирам с вашия проект - работя само с хора, на които вярвам.",
+      },
+    },
+    stats: {
+      experience: "8+ години опит",
+      experienceDesc: "в строителната индустрия",
+      projects: "15+ завършени проекта",
+      projectsDesc: "успешно реализирани",
+      area: "20,000+ м²",
+      areaDesc: "управлявано РЗП",
+      satisfaction: "98% препоръчват",
+      satisfactionDesc: "от клиентите",
+      contractors: "30+ подизпълнители",
+      contractorsDesc: "проверена мрежа",
+    },
+    howWeWork: {
+      title: "КАК РАБОТИМ",
+      subtitle: "Ясен процес от идея до ключ на ръка",
+      step1: {
+        title: "СРЕЩА & ОГЛЕД",
+        timeline: "Седмица 1",
+        description: "Безплатна консултация и оценка на обекта. Обсъждаме вашите нужди, визия и бюджет.",
+      },
+      step2: {
+        title: "ДЕТАЙЛНА ОФЕРТА",
+        timeline: "Седмица 2",
+        description: "Разбивка на бюджет по дейности, детайлен график и ясен Scope на работа. Без скрити разходи.",
+      },
+      step3: {
+        title: "СТАРТИРАНЕ",
+        timeline: "Седмица 3-4",
+        description: "Мобилизация на екипи, първа копка, организация на материали и логистика.",
+      },
+      step4: {
+        title: "ИЗПЪЛНЕНИЕ",
+        timeline: "Според графика",
+        description: "Седмични отчети за напредък, качествен контрол на всеки етап, координация на всички екипи.",
+      },
+      step5: {
+        title: "ПРЕДАВАНЕ",
+        timeline: "Краен срок",
+        description: "Пълна документация, гаранции, обучение за експлоатация. Подкрепа след завършване.",
+      },
+    },
+    costlyMistakes: {
+      title: "СКЪПИ ГРЕШКИ, КОИТО ДА ИЗБЕГНЕТЕ",
+      subtitle: "Реални цифри от строителния бранш",
+      mistake1: {
+        icon: "❌",
+        title: "Избор на подизпълнител само по ниска цена",
+        consequence: "→ Средно 30% надвишение на бюджета",
+        description: "Евтиното излиза скъпо. Преработки, лоши материали и забавяния струват повече от първоначалната 'икономия'.",
+      },
+      mistake2: {
+        icon: "❌",
+        title: "Липса на детайлен график",
+        consequence: "→ Средно 6 месеца забавяне",
+        description: "Без ясен план всеки чака всеки. Материали закъсняват, екипи стоят празни, проектът се точи.",
+      },
+      mistake3: {
+        icon: "❌",
+        title: "Слаб контрол върху качеството",
+        consequence: "→ Рекламации за 50,000+ лева",
+        description: "Скрити дефекти, некачествени материали, лошо изпълнение. Откриват се след завършване = скъпи ремонти.",
+      },
+      cta: "✅ С мен избягвате всичко това.",
     },
     about: {
       title: "За мен",
@@ -104,6 +185,18 @@ export const translations = {
       title: "Често задавани въпроси",
       subtitle: "Отговори на най-честите въпроси относно строителни проекти и услуги",
       items: [
+        {
+          question: "Работите ли с подизпълнители или със собствени екипи?",
+          answer: "Работя с проверена мрежа от 30+ подизпълнители, които лично съм селектирал и тествал през годините. Всички са сертифицирани и с доказан track record. Това ми позволява да избирам най-добрите специалисти за всеки конкретен проект, вместо да се ограничавам до собствен екип."
+        },
+        {
+          question: "Какво се случва при забавяне по вина на подизпълнител?",
+          answer: "Имам backup екипи и санкционни клаузи в договорите с всички подизпълнители. При проблем веднага активирам резервен екип, за да не спрем проекта. Финансовите санкции гарантират, че подизпълнителите имат силна мотивация да спазват сроковете."
+        },
+        {
+          question: "Колко проекта управлявате едновременно?",
+          answer: "Максимум 3 активни проекта едновременно, за да гарантирам пълно внимание и качество на всеки. Предпочитам да работя с по-малко клиенти, но на 100%, отколкото да се разпръсвам между десетки обекти."
+        },
         {
           question: "Какво точно прави Project Manager в строителството?",
           answer: "Project Manager управлява целия строителен проект от началото до края - планиране на бюджет и график, координация на екипи и подизпълнители, комуникация с клиенти, технически надзор, контрол на качеството и решаване на проблеми. Аз съм отговорен за това проектът да бъде завършен навреме, в рамките на бюджета и с високо качество."
@@ -219,6 +312,87 @@ export const translations = {
         "Professional construction project management with focus on quality, deadlines and innovation",
       viewProjects: "View Projects",
       contactMe: "Contact Me",
+      callNow: "Call Now",
+    },
+    whyKitanski: {
+      title: "WHY KITANSKI?",
+      subtitle: "Concrete reasons to work with me",
+      reason1: {
+        title: "Zero Delays",
+        description: "15+ projects completed on time in the last 3 years. Strict schedules and proactive risk management.",
+      },
+      reason2: {
+        title: "Transparency",
+        description: "Weekly reports and live access to project progress. You always know where your money is and what's happening on site.",
+      },
+      reason3: {
+        title: "Verified Subcontractors",
+        description: "Own network of 30+ certified teams. I don't experiment with your project - I only work with people I trust.",
+      },
+    },
+    stats: {
+      experience: "8+ years experience",
+      experienceDesc: "in construction industry",
+      projects: "15+ completed projects",
+      projectsDesc: "successfully realized",
+      area: "20,000+ m²",
+      areaDesc: "managed GFA",
+      satisfaction: "98% recommend",
+      satisfactionDesc: "of our clients",
+      contractors: "30+ subcontractors",
+      contractorsDesc: "verified network",
+    },
+    howWeWork: {
+      title: "HOW WE WORK",
+      subtitle: "Clear process from idea to turnkey",
+      step1: {
+        title: "MEETING & INSPECTION",
+        timeline: "Week 1",
+        description: "Free consultation and site evaluation. We discuss your needs, vision, and budget.",
+      },
+      step2: {
+        title: "DETAILED OFFER",
+        timeline: "Week 2",
+        description: "Budget breakdown by activities, detailed schedule, and clear Scope of Work. No hidden costs.",
+      },
+      step3: {
+        title: "KICKOFF",
+        timeline: "Week 3-4",
+        description: "Team mobilization, groundbreaking, material organization, and logistics.",
+      },
+      step4: {
+        title: "EXECUTION",
+        timeline: "As scheduled",
+        description: "Weekly progress reports, quality control at each stage, coordination of all teams.",
+      },
+      step5: {
+        title: "HANDOVER",
+        timeline: "Deadline",
+        description: "Complete documentation, warranties, operation training. Post-completion support.",
+      },
+    },
+    costlyMistakes: {
+      title: "COSTLY MISTAKES TO AVOID",
+      subtitle: "Real numbers from the construction industry",
+      mistake1: {
+        icon: "❌",
+        title: "Choosing subcontractors only by low price",
+        consequence: "→ Average 30% budget overrun",
+        description: "Cheap becomes expensive. Rework, poor materials, and delays cost more than the initial 'savings'.",
+      },
+      mistake2: {
+        icon: "❌",
+        title: "Lack of detailed schedule",
+        consequence: "→ Average 6 months delay",
+        description: "Without a clear plan, everyone waits for everyone. Materials arrive late, teams idle, project drags.",
+      },
+      mistake3: {
+        icon: "❌",
+        title: "Weak quality control",
+        consequence: "→ Claims for 50,000+ euros",
+        description: "Hidden defects, poor materials, bad workmanship. Discovered after completion = expensive repairs.",
+      },
+      cta: "✅ With me, you avoid all of this.",
     },
     about: {
       title: "About Me",
@@ -302,6 +476,18 @@ export const translations = {
       title: "Frequently Asked Questions",
       subtitle: "Answers to the most common questions about construction projects and services",
       items: [
+        {
+          question: "Do you work with subcontractors or your own teams?",
+          answer: "I work with a verified network of 30+ subcontractors that I have personally selected and tested over the years. All are certified with proven track records. This allows me to choose the best specialists for each specific project, rather than being limited to my own team."
+        },
+        {
+          question: "What happens if there's a delay caused by a subcontractor?",
+          answer: "I have backup teams and penalty clauses in contracts with all subcontractors. If there's a problem, I immediately activate a reserve team to keep the project moving. Financial penalties ensure subcontractors have strong motivation to meet deadlines."
+        },
+        {
+          question: "How many projects do you manage simultaneously?",
+          answer: "Maximum 3 active projects at a time to guarantee full attention and quality for each. I prefer to work with fewer clients at 100% rather than spreading myself across dozens of sites."
+        },
         {
           question: "What exactly does a Project Manager do in construction?",
           answer: "A Project Manager manages the entire construction project from start to finish - budget and schedule planning, team and subcontractor coordination, client communication, technical supervision, quality control, and problem-solving. I'm responsible for ensuring the project is completed on time, within budget, and with high quality."

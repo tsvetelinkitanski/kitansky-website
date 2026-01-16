@@ -2,13 +2,18 @@ import { useState, useEffect, lazy, Suspense } from 'react';
 import { translations } from './constants/translations';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
+import TrustStats from './components/TrustStats';
+import WhyKitanski from './components/WhyKitanski';
+import StickyCallButton from './components/StickyCallButton';
 import CookieConsent from './components/CookieConsent';
 import LoadingSpinner from './components/LoadingSpinner';
 import reportWebVitals from './utils/reportWebVitals';
 
 const About = lazy(() => import('./components/About'));
+const HowWeWork = lazy(() => import('./components/HowWeWork'));
 const Services = lazy(() => import('./components/Services'));
 const Projects = lazy(() => import('./components/Projects'));
+const CostlyMistakes = lazy(() => import('./components/CostlyMistakes'));
 const Testimonials = lazy(() => import('./components/Testimonials'));
 const ContactForm = lazy(() => import('./components/ContactForm'));
 const Footer = lazy(() => import('./components/Footer'));
@@ -304,8 +309,16 @@ const KitanskiWebsite = () => {
       <main id="main-content">
         <Hero translations={translations} language={language} />
 
+        <TrustStats translations={translations} language={language} />
+
+        <WhyKitanski translations={translations} language={language} />
+
       <Suspense fallback={<LoadingSpinner language={language} />}>
         <About translations={translations} language={language} />
+      </Suspense>
+
+      <Suspense fallback={<LoadingSpinner language={language} />}>
+        <HowWeWork translations={translations} language={language} />
       </Suspense>
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
@@ -314,6 +327,10 @@ const KitanskiWebsite = () => {
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
         <Projects translations={translations} language={language} />
+      </Suspense>
+
+      <Suspense fallback={<LoadingSpinner language={language} />}>
+        <CostlyMistakes translations={translations} language={language} />
       </Suspense>
 
       <Suspense fallback={<LoadingSpinner language={language} />}>
@@ -328,6 +345,8 @@ const KitanskiWebsite = () => {
         <Footer translations={translations} language={language} />
       </Suspense>
       </main>
+
+      <StickyCallButton language={language} />
 
       <style jsx>{`
         @keyframes fade-in-up {

@@ -61,18 +61,51 @@ const Hero = ({ translations, language }) => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-800">
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="px-10 py-5 bg-white hover:bg-stone-50 text-slate-900 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl"
+            <a
+              href="tel:+359878349453"
+              className="px-10 py-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-3 text-lg"
+              onClick={() => {
+                if (window.gtag) {
+                  window.gtag('event', 'qualify_lead', {
+                    event_category: 'Contact',
+                    event_label: 'Hero Call Button Click',
+                    value: 100,
+                    currency: 'BGN'
+                  });
+                }
+              }}
             >
-              {t.hero.viewProjects} →
-            </button>
+              <span className="text-2xl animate-pulse">📞</span>
+              {t.hero.callNow}
+            </a>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-10 py-5 bg-gradient-to-r from-stone-700 to-neutral-700 hover:from-stone-800 hover:to-neutral-800 text-white rounded-2xl font-bold transition-all duration-300 border-2 border-white/30 transform hover:scale-105 shadow-2xl"
+              className="px-10 py-6 bg-white hover:bg-stone-50 text-slate-900 rounded-2xl font-bold transition-all duration-300 border-2 border-white/30 transform hover:scale-105 shadow-2xl text-lg"
             >
               {t.hero.contactMe}
             </button>
+          </div>
+
+          {/* Phone number display */}
+          <div className="mt-8 animate-fade-in-up animation-delay-1000">
+            <a
+              href="tel:+359878349453"
+              className="inline-flex items-center gap-2 text-white font-bold text-xl hover:text-stone-200 transition-colors duration-300"
+              onClick={() => {
+                if (window.gtag) {
+                  window.gtag('event', 'qualify_lead', {
+                    event_category: 'Contact',
+                    event_label: 'Hero Phone Number Click',
+                    value: 100,
+                    currency: 'BGN'
+                  });
+                }
+              }}
+            >
+              <span className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full hover:bg-white/30 transition-all duration-300 drop-shadow-lg">
+                📱 +359 878 34 94 53
+              </span>
+            </a>
           </div>
         </div>
 
