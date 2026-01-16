@@ -50,18 +50,18 @@ const TrustStats = ({ translations, language }) => {
                 className="scroll-animate scale-fade-in group text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white/10 dark:bg-slate-900/30 backdrop-blur-sm p-6 rounded-3xl border-2 border-white/20 dark:border-slate-700/50 hover:border-white/40 dark:hover:border-slate-600/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                  <div className="mb-4 flex justify-center">
-                    <div className={`p-3 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                      <Icon className="w-7 h-7 text-white" />
+                <div className="bg-white/10 dark:bg-slate-900/30 backdrop-blur-sm p-4 rounded-3xl border-2 border-white/20 dark:border-slate-700/50 hover:border-white/40 dark:hover:border-slate-600/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl min-h-[180px] flex flex-col justify-center">
+                  <div className="mb-3 flex justify-center">
+                    <div className={`p-2.5 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
 
-                  <div className="text-3xl md:text-4xl font-black text-white mb-2 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-2xl md:text-3xl font-black text-white mb-2 group-hover:scale-105 transition-transform duration-300">
                     {stat.value}
                   </div>
 
-                  <div className="text-sm text-stone-200 dark:text-slate-300 font-semibold uppercase tracking-wide">
+                  <div className="text-xs text-stone-200 dark:text-slate-300 font-semibold uppercase tracking-wide leading-tight px-2">
                     {stat.label}
                   </div>
                 </div>

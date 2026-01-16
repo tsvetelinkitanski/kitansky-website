@@ -63,7 +63,7 @@ const Hero = ({ translations, language }) => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-800">
             <a
               href="tel:+359878349453"
-              className="px-10 py-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-3 text-lg"
+              className="px-8 py-4 bg-gradient-to-r from-amber-600/90 to-orange-600/90 hover:from-amber-700 hover:to-orange-700 backdrop-blur-sm text-white rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 shadow-2xl flex items-center justify-center gap-2 border-2 border-amber-500/30"
               onClick={() => {
                 if (window.gtag) {
                   window.gtag('event', 'qualify_lead', {
@@ -75,12 +75,12 @@ const Hero = ({ translations, language }) => {
                 }
               }}
             >
-              <span className="text-2xl animate-pulse">📞</span>
+              <span className="text-xl">📞</span>
               {t.hero.callNow}
             </a>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-10 py-6 bg-white hover:bg-stone-50 text-slate-900 rounded-2xl font-bold transition-all duration-300 border-2 border-white/30 transform hover:scale-105 shadow-2xl text-lg"
+              className="px-8 py-4 bg-white/90 hover:bg-white backdrop-blur-sm text-slate-900 rounded-2xl font-bold transition-all duration-300 border-2 border-white/40 transform hover:scale-105 shadow-2xl"
             >
               {t.hero.contactMe}
             </button>

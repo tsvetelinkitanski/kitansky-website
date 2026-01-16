@@ -132,8 +132,8 @@ const CostlyMistakes = ({ translations, language }) => {
 
               <p className="mt-6 text-sm text-green-100">
                 {language === 'bg'
-                  ? '✓ Безплатна първоначална консултация  •  ✓ Оферта в рамките на 48 часа'
-                  : '✓ Free initial consultation  •  ✓ Quote within 48 hours'}
+                  ? '✓ Бърз отговор  •  ✓ Оферта в рамките на 48 часа'
+                  : '✓ Quick response  •  ✓ Quote within 48 hours'}
               </p>
             </div>
           </div>

@@ -122,15 +122,10 @@ const HowWeWork = ({ translations, language }) => {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <div className="inline-block bg-gradient-to-r from-stone-100 to-neutral-100 dark:from-slate-800 dark:to-slate-700 px-8 py-6 rounded-3xl border-2 border-stone-300 dark:border-slate-600 shadow-xl transition-colors duration-300">
-            <p className="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">
+            <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
               {language === 'bg'
                 ? '🚀 Готови да стартираме? Всичко започва с едно обаждане.'
                 : '🚀 Ready to start? Everything begins with one call.'}
-            </p>
-            <p className="text-slate-600 dark:text-slate-400">
-              {language === 'bg'
-                ? 'Първата консултация е безплатна!'
-                : 'First consultation is free!'}
             </p>
           </div>
         </div>

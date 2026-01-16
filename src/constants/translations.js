@@ -57,7 +57,7 @@ export const translations = {
       step1: {
         title: "СРЕЩА & ОГЛЕД",
         timeline: "Седмица 1",
-        description: "Безплатна консултация и оценка на обекта. Обсъждаме вашите нужди, визия и бюджет.",
+        description: "Първоначална среща и оценка на обекта. Обсъждаме вашите нужди, визия и бюджет.",
       },
       step2: {
         title: "ДЕТАЙЛНА ОФЕРТА",
@@ -348,7 +348,7 @@ export const translations = {
       step1: {
         title: "MEETING & INSPECTION",
         timeline: "Week 1",
-        description: "Free consultation and site evaluation. We discuss your needs, vision, and budget.",
+        description: "Initial meeting and site evaluation. We discuss your needs, vision, and budget.",
       },
       step2: {
         title: "DETAILED OFFER",
