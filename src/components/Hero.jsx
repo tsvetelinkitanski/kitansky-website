@@ -85,28 +85,6 @@ const Hero = ({ translations, language }) => {
               {t.hero.contactMe}
             </button>
           </div>
-
-          {/* Phone number display */}
-          <div className="mt-8 animate-fade-in-up animation-delay-1000">
-            <a
-              href="tel:+359878349453"
-              className="inline-flex items-center gap-2 text-white font-bold text-xl hover:text-stone-200 transition-colors duration-300"
-              onClick={() => {
-                if (window.gtag) {
-                  window.gtag('event', 'qualify_lead', {
-                    event_category: 'Contact',
-                    event_label: 'Hero Phone Number Click',
-                    value: 100,
-                    currency: 'BGN'
-                  });
-                }
-              }}
-            >
-              <span className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full hover:bg-white/30 transition-all duration-300 drop-shadow-lg">
-                📱 +359 878 34 94 53
-              </span>
-            </a>
-          </div>
         </div>
 
         <div className="mt-20 animate-bounce">
