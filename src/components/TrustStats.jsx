@@ -5,30 +5,35 @@ const TrustStats = ({ translations, language }) => {
 
   const stats = [
     {
+      id: 'experience',
       icon: Award,
       value: t.stats.experience,
       label: t.stats.experienceDesc,
       gradient: 'from-amber-500 to-orange-600',
     },
     {
+      id: 'projects',
       icon: Building2,
       value: t.stats.projects,
       label: t.stats.projectsDesc,
       gradient: 'from-blue-500 to-indigo-600',
     },
     {
+      id: 'area',
       icon: HardHat,
       value: t.stats.area,
       label: t.stats.areaDesc,
       gradient: 'from-green-500 to-emerald-600',
     },
     {
+      id: 'satisfaction',
       icon: ThumbsUp,
       value: t.stats.satisfaction,
       label: t.stats.satisfactionDesc,
       gradient: 'from-purple-500 to-pink-600',
     },
     {
+      id: 'contractors',
       icon: Users,
       value: t.stats.contractors,
       label: t.stats.contractorsDesc,
@@ -46,22 +51,22 @@ const TrustStats = ({ translations, language }) => {
             const Icon = stat.icon;
             return (
               <div
-                key={index}
+                key={stat.id}
                 className="scroll-animate scale-fade-in group text-center"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="bg-white/10 dark:bg-slate-900/30 backdrop-blur-sm p-3 rounded-3xl border-2 border-white/20 dark:border-slate-700/50 hover:border-white/40 dark:hover:border-slate-600/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl min-h-[170px] flex flex-col justify-center">
+                <div className="bg-white/10 dark:bg-slate-900/30 backdrop-blur-sm p-4 rounded-3xl border-2 border-white/20 dark:border-slate-700/50 hover:border-white/40 dark:hover:border-slate-600/70 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl min-h-[140px] flex flex-col justify-center overflow-hidden">
                   <div className="mb-2 flex justify-center">
                     <div className={`p-2 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                       <Icon className="w-5 h-5 text-white" />
                     </div>
                   </div>
 
-                  <div className="text-2xl md:text-3xl font-black text-white mb-1.5 group-hover:scale-105 transition-transform duration-300">
+                  <div className="text-xl md:text-2xl font-black text-white mb-1 group-hover:scale-105 transition-transform duration-300 whitespace-nowrap overflow-hidden text-ellipsis px-1">
                     {stat.value}
                   </div>
 
-                  <div className="text-[10px] md:text-[11px] text-stone-200 dark:text-slate-300 font-bold uppercase tracking-tight leading-tight px-1 break-words">
+                  <div className="text-[9px] md:text-[10px] text-stone-200 dark:text-slate-300 font-semibold uppercase tracking-tight leading-tight px-2 line-clamp-2 overflow-hidden">
                     {stat.label}
                   </div>
                 </div>

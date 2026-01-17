@@ -5,16 +5,19 @@ const Services = ({ translations, language }) => {
 
   const services = [
     {
+      id: 'pm',
       icon: <Briefcase className="w-8 h-8" />,
       title: t.services.pm.title,
       description: t.services.pm.description,
     },
     {
+      id: 'supervision',
       icon: <Award className="w-8 h-8" />,
       title: t.services.supervision.title,
       description: t.services.supervision.description,
     },
     {
+      id: 'consulting',
       icon: <CheckCircle className="w-8 h-8" />,
       title: t.services.consulting.title,
       description: t.services.consulting.description,
@@ -34,7 +37,7 @@ const Services = ({ translations, language }) => {
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
-              key={index}
+              key={service.id}
               className={`scroll-animate slide-from-bottom group bg-white dark:bg-slate-800 p-10 rounded-3xl border-2 border-stone-200 dark:border-slate-700 hover:border-stone-400 dark:hover:border-slate-600 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl relative overflow-hidden`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >

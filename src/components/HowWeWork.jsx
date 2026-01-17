@@ -71,7 +71,7 @@ const HowWeWork = ({ translations, language }) => {
 
             return (
               <div
-                key={index}
+                key={step.number}
                 className={`scroll-animate ${isEven ? 'slide-from-left' : 'slide-from-right'} flex flex-col md:flex-row gap-6 items-center`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -124,7 +124,7 @@ const HowWeWork = ({ translations, language }) => {
           <div className="inline-block bg-gradient-to-r from-stone-100 to-neutral-100 dark:from-slate-800 dark:to-slate-700 px-8 py-6 rounded-3xl border-2 border-stone-300 dark:border-slate-600 shadow-xl transition-colors duration-300">
             <p className="text-lg font-bold text-slate-900 dark:text-slate-100">
               {language === 'bg'
-                ? '🚀 Готови да стартираме? Всичко започва с едно обаждане.'
+                ? '🚀 Готови ли сте да стартираме? Всичко започва с едно обаждане.'
                 : '🚀 Ready to start? Everything begins with one call.'}
             </p>
           </div>

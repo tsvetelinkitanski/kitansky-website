@@ -19,7 +19,7 @@ const Testimonials = ({ translations, language }) => {
         <div className="grid md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-4xl mx-auto">
           {t.testimonials.items.map((testimonial, index) => (
             <div
-              key={index}
+              key={testimonial.name}
               className="scroll-animate slide-from-bottom group bg-white dark:bg-slate-800 p-10 md:p-12 rounded-3xl border-2 border-stone-200 dark:border-slate-700 hover:border-stone-400 dark:hover:border-slate-600 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden"
               style={{ animationDelay: `${index * 0.15}s` }}
             >

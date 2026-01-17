@@ -297,7 +297,7 @@ const Projects = ({ translations, language }) => {
                 <div className="mt-4 flex gap-2 justify-center flex-wrap">
                   {currentProject.media.map((media, index) => (
                     <button
-                      key={index}
+                      key={media.src}
                       onClick={() => setCurrentMediaIndex(index)}
                       className={`w-3 h-3 rounded-full transition-all ${
                         index === currentMediaIndex

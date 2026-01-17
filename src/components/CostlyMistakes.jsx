@@ -5,18 +5,21 @@ const CostlyMistakes = ({ translations, language }) => {
 
   const mistakes = [
     {
+      id: 'budget',
       icon: TrendingUp,
       title: t.costlyMistakes.mistake1.title,
       consequence: t.costlyMistakes.mistake1.consequence,
       description: t.costlyMistakes.mistake1.description,
     },
     {
+      id: 'delays',
       icon: Clock,
       title: t.costlyMistakes.mistake2.title,
       consequence: t.costlyMistakes.mistake2.consequence,
       description: t.costlyMistakes.mistake2.description,
     },
     {
+      id: 'quality',
       icon: BadgeAlert,
       title: t.costlyMistakes.mistake3.title,
       consequence: t.costlyMistakes.mistake3.consequence,
@@ -52,7 +55,7 @@ const CostlyMistakes = ({ translations, language }) => {
             const Icon = mistake.icon;
             return (
               <div
-                key={index}
+                key={mistake.id}
                 className="scroll-animate slide-from-bottom group"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >

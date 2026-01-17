@@ -5,18 +5,21 @@ const WhyKitanski = ({ translations, language }) => {
 
   const reasons = [
     {
+      id: 'time',
       icon: Clock,
       title: t.whyKitanski.reason1.title,
       description: t.whyKitanski.reason1.description,
       gradient: 'from-green-600 to-emerald-700 dark:from-green-700 dark:to-emerald-800',
     },
     {
+      id: 'transparency',
       icon: Eye,
       title: t.whyKitanski.reason2.title,
       description: t.whyKitanski.reason2.description,
       gradient: 'from-blue-600 to-cyan-700 dark:from-blue-700 dark:to-cyan-800',
     },
     {
+      id: 'team',
       icon: Users,
       title: t.whyKitanski.reason3.title,
       description: t.whyKitanski.reason3.description,
@@ -47,7 +50,7 @@ const WhyKitanski = ({ translations, language }) => {
             const Icon = reason.icon;
             return (
               <div
-                key={index}
+                key={reason.id}
                 className="scroll-animate scale-fade-in group bg-white dark:bg-slate-800 p-8 rounded-3xl border-2 border-stone-200 dark:border-slate-700 hover:border-stone-400 dark:hover:border-slate-600 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl relative overflow-hidden"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
@@ -85,7 +88,7 @@ const WhyKitanski = ({ translations, language }) => {
           <div className="inline-flex flex-col items-center gap-4 bg-gradient-to-br from-stone-700 to-neutral-700 dark:from-slate-700 dark:to-slate-600 text-white px-10 py-8 rounded-3xl shadow-2xl">
             <p className="text-2xl font-bold">
               {language === 'bg'
-                ? 'Готови да започнем вашия проект?'
+                ? 'Готови ли сте да започнем вашия проект?'
                 : 'Ready to start your project?'}
             </p>
             <a

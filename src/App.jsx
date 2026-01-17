@@ -258,7 +258,7 @@ const KitanskiWebsite = () => {
         mutation.addedNodes.forEach((node) => {
           if (node.nodeType === 1) { // Element node
             if (node.classList?.contains('scroll-animate') ||
-                node.querySelector?.('.scroll-animate')) {
+                node.querySelector?.('.scroll-animate') !== null) {
               hasNewElements = true;
             }
           }
