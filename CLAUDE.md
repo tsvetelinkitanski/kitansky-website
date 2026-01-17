@@ -24,6 +24,9 @@
   - CostlyMistakes.jsx → `key={mistake.id}`
   - Testimonials.jsx → `key={testimonial.name}`
   - Projects.jsx media → `key={media.src}`
+- **Cookie consent reload** - премахнат `window.location.reload()`:
+  - CookieConsent.jsx - махнати reload-ите
+  - App.jsx - добавено `window['ga-disable-ID'] = true` за спиране на GA без reload
 
 ## История на комитите
 
@@ -86,9 +89,12 @@ src/
 
 ## Известни проблеми (за бъдещо внимание)
 
-1. **og-image.jpg** - липсва файл за social sharing
-2. **Cookie consent reload** - прави page reload при промяна (лош UX)
-3. **hreflang tags** - използва URL параметър вместо отделни URLs
+1. **hreflang tags** - използва URL параметър вместо отделни URLs (minor SEO)
+2. **Projects масив** - пресъздава се при всеки рендер, може да се оптимизира с useMemo
+
+## Вече поправени проблеми
+- ~~og-image.jpg~~ - файлът съществува в public/ (65KB)
+- ~~Cookie consent reload~~ - поправено на 17.01.2026
 
 ## Деплоймънт
 

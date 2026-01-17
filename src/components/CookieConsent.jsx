@@ -96,8 +96,6 @@ const CookieConsent = ({ cookieConsent, acceptCookies, declineCookies, translati
               onClick={() => {
                 acceptCookies();
                 setShowManagePanel(false);
-                // Reload to apply Google Analytics
-                window.location.reload();
               }}
               className="w-full px-4 py-2 bg-gradient-to-r from-stone-600 to-neutral-700 hover:from-stone-700 hover:to-neutral-800 text-white rounded-full transition-colors font-medium shadow-md"
             >
@@ -107,8 +105,6 @@ const CookieConsent = ({ cookieConsent, acceptCookies, declineCookies, translati
               onClick={() => {
                 declineCookies();
                 setShowManagePanel(false);
-                // Reload to disable Google Analytics
-                window.location.reload();
               }}
               className="w-full px-4 py-2 bg-stone-300 dark:bg-stone-700 hover:bg-stone-400 dark:hover:bg-stone-600 text-slate-900 dark:text-white rounded-full transition-colors font-medium"
             >

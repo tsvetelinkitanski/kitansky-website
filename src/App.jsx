@@ -95,6 +95,11 @@ const KitanskiWebsite = () => {
   const declineCookies = () => {
     localStorage.setItem('cookieConsent', 'declined');
     setCookieConsent(false);
+    // Disable Google Analytics tracking without page reload
+    const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+    if (GA_MEASUREMENT_ID) {
+      window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+    }
   };
 
   const toggleLanguage = () => {
