@@ -82,16 +82,19 @@ const Projects = ({ translations, language }) => {
       category: t.projects.doml2.category,
       media: [
         {
+          id: 'doml2-1',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Външен изглед' : 'Exterior view',
         },
         {
+          id: 'doml2-2',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Фасада' : 'Facade',
         },
         {
+          id: 'doml2-3',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1460317442991-0ec209397118?w=1200&h=900&fit=crop',
           caption:
@@ -111,16 +114,19 @@ const Projects = ({ translations, language }) => {
       category: t.projects.corner.category,
       media: [
         {
+          id: 'corner-1',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Бизнес сграда' : 'Business building',
         },
         {
+          id: 'corner-2',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Интериор' : 'Interior',
         },
         {
+          id: 'corner-3',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Работно пространство' : 'Workspace',
@@ -139,17 +145,20 @@ const Projects = ({ translations, language }) => {
       category: t.projects.fountains.category,
       media: [
         {
+          id: 'fountains-1',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Луксозна сграда' : 'Luxury building',
         },
         {
+          id: 'fountains-2',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=900&fit=crop',
           caption:
             language === 'bg' ? 'Модерна архитектура' : 'Modern architecture',
         },
         {
+          id: 'fountains-3',
           type: 'image',
           src: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&h=900&fit=crop',
           caption: language === 'bg' ? 'Вътрешен двор' : 'Interior courtyard',
@@ -297,7 +306,7 @@ const Projects = ({ translations, language }) => {
                 <div className="mt-4 flex gap-2 justify-center flex-wrap">
                   {currentProject.media.map((media, index) => (
                     <button
-                      key={media.src}
+                      key={media.id}
                       onClick={() => setCurrentMediaIndex(index)}
                       className={`w-3 h-3 rounded-full transition-all ${
                         index === currentMediaIndex

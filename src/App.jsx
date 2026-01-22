@@ -19,35 +19,32 @@ const ContactForm = lazy(() => import('./components/ContactForm'));
 const Footer = lazy(() => import('./components/Footer'));
 
 const KitanskiWebsite = () => {
-  const [language, setLanguage] = useState('bg');
-  const [cookieConsent, setCookieConsent] = useState(null);
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (consent) {
-      setCookieConsent(consent === 'accepted');
-    }
-
+  const [language, setLanguage] = useState(() => {
     const savedLanguage = localStorage.getItem('language');
-    if (savedLanguage && (savedLanguage === 'bg' || savedLanguage === 'en')) {
-      setLanguage(savedLanguage);
-    }
+    return (savedLanguage === 'bg' || savedLanguage === 'en') ? savedLanguage : 'bg';
+  });
 
-    // Load theme preference
+  const [cookieConsent, setCookieConsent] = useState(() => {
+    const consent = localStorage.getItem('cookieConsent');
+    if (consent === 'accepted') return true;
+    if (consent === 'declined') return false;
+    return null;
+  });
+
+  const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
-      setTheme(savedTheme);
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      }
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      return savedTheme;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  });
+
+  // Apply dark mode class on initial render
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
     } else {
-      // Check system preference
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
-        setTheme('dark');
-        document.documentElement.classList.add('dark');
-      }
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
