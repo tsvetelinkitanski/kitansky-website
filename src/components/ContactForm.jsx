@@ -152,6 +152,8 @@ const ContactForm = ({ translations, language }) => {
           value: 100,
           currency: 'BGN'
         });
+        // Google Ads conversion tracking - Submit Lead Form
+        window.gtag('event', 'conversion_event_submit_lead_form', {});
       }
 
       setFormStatus('success');
