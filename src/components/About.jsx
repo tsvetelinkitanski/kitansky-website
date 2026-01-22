@@ -18,13 +18,25 @@ const About = ({ translations, language }) => {
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-white to-stone-50/50 dark:from-slate-800 dark:to-slate-800/50 p-10 rounded-3xl border border-stone-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-              <h3 className="text-4xl font-black text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text mb-6">
-                {t.about.name}
-              </h3>
-              <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                {t.about.intro}
-              </p>
+            <div className="bg-gradient-to-br from-white to-stone-50/50 dark:from-slate-800 dark:to-slate-800/50 p-8 md:p-10 rounded-3xl border border-stone-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500">
+              <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-6">
+                <div className="relative flex-shrink-0">
+                  <div className="absolute inset-0 bg-gradient-to-br from-stone-600 to-neutral-700 rounded-2xl transform rotate-3"></div>
+                  <img
+                    src="/todor-kitanski.jpg"
+                    alt="Тодор Китански - Строителен мениджър"
+                    className="relative w-40 h-40 md:w-48 md:h-48 object-cover rounded-2xl shadow-xl"
+                  />
+                </div>
+                <div className="text-center sm:text-left">
+                  <h3 className="text-3xl md:text-4xl font-black text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text mb-3">
+                    {t.about.name}
+                  </h3>
+                  <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+                    {t.about.intro}
+                  </p>
+                </div>
+              </div>
               <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
                 {t.about.career}
               </p>
