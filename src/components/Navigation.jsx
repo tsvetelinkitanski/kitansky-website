@@ -40,7 +40,7 @@ const Navigation = ({ language, toggleLanguage, theme, toggleTheme, translations
             </h1>
           </div>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-6 overflow-x-auto scrollbar-hide">
             {navItems.map((item) => {
               if (item.href) {
                 return (

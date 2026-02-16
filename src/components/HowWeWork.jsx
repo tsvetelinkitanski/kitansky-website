@@ -98,7 +98,7 @@ const HowWeWork = ({ translations, language }) => {
 
                       {/* Text content */}
                       <div className="flex-grow">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-3">
+                        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 mb-3">
                           <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100 transition-colors duration-300">
                             {step.title}
                           </h3>

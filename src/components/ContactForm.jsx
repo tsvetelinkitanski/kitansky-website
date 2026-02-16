@@ -221,7 +221,7 @@ const ContactForm = ({ translations, language }) => {
           {t.contact.title}
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-6">
             <div className="bg-white dark:bg-slate-800 p-10 rounded-3xl border-2 border-stone-200 dark:border-slate-700 shadow-xl transition-colors duration-300">
               <h3 className="text-3xl font-bold mb-8 text-transparent bg-gradient-to-r from-stone-700 to-neutral-700 dark:from-stone-300 dark:to-neutral-300 bg-clip-text">

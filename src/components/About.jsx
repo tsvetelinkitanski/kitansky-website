@@ -16,7 +16,7 @@ const About = ({ translations, language }) => {
           {t.about.title}
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="bg-gradient-to-br from-white to-stone-50/50 dark:from-slate-800 dark:to-slate-800/50 p-8 md:p-10 rounded-3xl border border-stone-200/50 dark:border-slate-700/50 shadow-xl hover:shadow-2xl transition-all duration-500">
               <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-6">

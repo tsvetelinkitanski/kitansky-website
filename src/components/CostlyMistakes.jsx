@@ -50,7 +50,7 @@ const CostlyMistakes = ({ translations, language }) => {
         </div>
 
         {/* Mistakes Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {mistakes.map((mistake, index) => {
             const Icon = mistake.icon;
             return (

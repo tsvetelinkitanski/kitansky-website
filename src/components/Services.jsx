@@ -34,7 +34,7 @@ const Services = ({ translations, language }) => {
           {t.services.title}
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={service.id}
